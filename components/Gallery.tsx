@@ -102,9 +102,11 @@ export default function Gallery() {
 						<div
 							key={image.id}
 							className={`relative mb-6 break-inside-avoid cursor-pointer group ${
-								index % 7 === 0 || index % 7 === 3 ? 'aspect-[3/4]' : 
-								index % 7 === 1 || index % 7 === 5 ? 'aspect-square' :
-								'aspect-[4/3]'
+								index % 7 === 0 || index % 7 === 3
+									? "aspect-[3/4]"
+									: index % 7 === 1 || index % 7 === 5
+									? "aspect-square"
+									: "aspect-[4/3]"
 							}`}
 							onClick={() => openModal(image.id)}
 						>
@@ -114,7 +116,7 @@ export default function Gallery() {
 								alt={image.title}
 								className="w-full h-full object-cover rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105"
 							/>
-							
+
 							{/* Subtle overlay on hover */}
 							<div className="absolute inset-0 bg-forest-green/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
 								<div className="text-warm-white text-center">

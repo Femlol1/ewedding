@@ -66,7 +66,7 @@ export default function About() {
 								className="w-full h-80 object-cover rounded-2xl shadow-lg"
 							/>
 						</div>
-						
+
 						{/* Three smaller images in a row */}
 						<div className="grid grid-cols-3 gap-4">
 							<img

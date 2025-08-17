@@ -23,7 +23,7 @@ export default function Hero() {
 					{/* Names */}
 					<div className="space-y-4">
 						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-forest-green mb-4">
-							A <span className="text-champagne-gold">&</span> B
+							Emmanuel <span className="text-champagne-gold">&</span> Temitope
 						</h1>
 						<p className="text-xl sm:text-2xl text-sage-green font-light">
 							We're getting married!
