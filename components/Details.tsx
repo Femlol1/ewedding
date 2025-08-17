@@ -107,7 +107,9 @@ export default function Details() {
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-forest-green">Dress Code</h4>
+									<h4 className="font-semibold text-forest-green">
+										Dress Code
+									</h4>
 									<p className="text-charcoal">Formal / Cocktail Attire</p>
 								</div>
 							</div>

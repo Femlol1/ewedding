@@ -22,11 +22,11 @@ export default function About() {
 								How We Met
 							</h3>
 							<p className="text-charcoal leading-relaxed">
-								We met on a sunny afternoon at the local coffee shop where John
-								was reading his favorite book and Sarah was working on her
-								laptop. A spilled latte led to our first conversation, and the
-								rest is history. What started as an accidental encounter became
-								the most beautiful journey of our lives.
+								We met on a sunny afternoon at the local coffee shop where B was
+								reading his favorite book and A was working on her laptop. A
+								spilled latte led to our first conversation, and the rest is
+								history. What started as an accidental encounter became the most
+								beautiful journey of our lives.
 							</p>
 						</div>
 
@@ -35,11 +35,11 @@ export default function About() {
 								The Proposal
 							</h3>
 							<p className="text-charcoal leading-relaxed">
-								After three wonderful years together, John proposed during our
+								After three wonderful years together, B proposed during our
 								anniversary trip to the mountains. Under a sky full of stars,
-								with Sarah completely surprised, he got down on one knee and
-								asked the question that changed our lives forever. Of course,
-								she said yes!
+								with A completely surprised, he got down on one knee and asked
+								the question that changed our lives forever. Of course, she said
+								yes!
 							</p>
 						</div>
 

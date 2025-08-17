@@ -23,7 +23,7 @@ export default function Hero() {
 					{/* Names */}
 					<div className="space-y-4">
 						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-forest-green mb-4">
-							Sarah <span className="text-champagne-gold">&</span> John
+							A <span className="text-champagne-gold">&</span> B
 						</h1>
 						<p className="text-xl sm:text-2xl text-sage-green font-light">
 							We're getting married!
@@ -38,7 +38,9 @@ export default function Hero() {
 						<p className="text-3xl sm:text-4xl font-bold text-forest-green mb-2">
 							December 15, 2026
 						</p>
-						<p className="text-lg text-sage-green">Sunset Gardens, California</p>
+						<p className="text-lg text-sage-green">
+							Sunset Gardens, California
+						</p>
 					</div>
 
 					{/* Countdown Timer */}

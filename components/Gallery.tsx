@@ -7,53 +7,53 @@ export default function Gallery() {
 
 	// Stock wedding images from Unsplash
 	const images = [
-		{ 
-			id: 1, 
-			title: "Engagement Shoot", 
+		{
+			id: 1,
+			title: "Engagement Shoot",
 			category: "engagement",
-			url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=500&fit=crop&crop=faces"
+			url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=500&fit=crop&crop=faces",
 		},
-		{ 
-			id: 2, 
-			title: "Our First Date", 
+		{
+			id: 2,
+			title: "Our First Date",
 			category: "memories",
-			url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500&fit=crop&crop=center",
 		},
-		{ 
-			id: 3, 
-			title: "Beach Vacation", 
+		{
+			id: 3,
+			title: "Beach Vacation",
 			category: "travel",
-			url: "https://images.unsplash.com/photo-1516627145497-ae2af99fcd24?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1516627145497-ae2af99fcd24?w=500&h=500&fit=crop&crop=center",
 		},
-		{ 
-			id: 4, 
-			title: "The Proposal", 
+		{
+			id: 4,
+			title: "The Proposal",
 			category: "engagement",
-			url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&h=500&fit=crop&crop=center",
 		},
-		{ 
-			id: 5, 
-			title: "Family Gathering", 
+		{
+			id: 5,
+			title: "Family Gathering",
 			category: "memories",
-			url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=500&h=500&fit=crop&crop=center",
 		},
-		{ 
-			id: 6, 
-			title: "Mountain Trip", 
+		{
+			id: 6,
+			title: "Mountain Trip",
 			category: "travel",
-			url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&h=500&fit=crop&crop=center",
 		},
-		{ 
-			id: 7, 
-			title: "Anniversary Dinner", 
+		{
+			id: 7,
+			title: "Anniversary Dinner",
 			category: "memories",
-			url: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=500&h=500&fit=crop&crop=center",
 		},
-		{ 
-			id: 8, 
-			title: "Ring Close-up", 
+		{
+			id: 8,
+			title: "Ring Close-up",
 			category: "engagement",
-			url: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&h=500&fit=crop&crop=center"
+			url: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&h=500&fit=crop&crop=center",
 		},
 	];
 
@@ -110,11 +110,13 @@ export default function Gallery() {
 								alt={image.title}
 								className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
 							/>
-							
+
 							{/* Image title overlay */}
 							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-forest-green/80 to-transparent p-4">
 								<div className="text-center">
-									<div className="text-sm text-warm-white font-medium">{image.title}</div>
+									<div className="text-sm text-warm-white font-medium">
+										{image.title}
+									</div>
 								</div>
 							</div>
 

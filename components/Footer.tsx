@@ -7,7 +7,9 @@ export default function Footer() {
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{/* Wedding Info */}
 					<div className="text-center md:text-left">
-						<h3 className="text-2xl font-bold text-champagne-gold mb-4">Emmanuel</h3>
+						<h3 className="text-2xl font-bold text-champagne-gold mb-4">
+							Emmanuel
+						</h3>
 						<p className="text-warm-beige mb-2">December 15, 2026</p>
 						<p className="text-warm-beige mb-2">Sunset Gardens, California</p>
 						<p className="text-warm-beige">
