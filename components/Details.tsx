@@ -2,25 +2,25 @@ export default function Details() {
 	return (
 		<section
 			id="details"
-			className="py-20 bg-gradient-to-br from-rose-50 to-pink-50"
+			className="py-20 bg-gradient-to-br from-rose-25 via-pink-25 to-blush-25"
 		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-16">
-					<h2 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
+					<h2 className="text-4xl sm:text-5xl font-bold text-slate-700 mb-4">
 						Wedding Details
 					</h2>
-					<p className="text-xl text-gray-600 max-w-3xl mx-auto">
+					<p className="text-xl text-slate-500 max-w-3xl mx-auto">
 						All the important information for our special day
 					</p>
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 					{/* Ceremony Details */}
-					<div className="bg-white rounded-2xl shadow-lg p-8">
+					<div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-rose-100/50">
 						<div className="text-center mb-8">
-							<div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+							<div className="w-16 h-16 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
 								<svg
-									className="w-8 h-8 text-rose-600"
+									className="w-8 h-8 text-rose-400"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
@@ -28,21 +28,21 @@ export default function Details() {
 									<path
 										strokeLinecap="round"
 										strokeLinejoin="round"
-										strokeWidth={2}
+										strokeWidth={1.5}
 										d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
 									/>
 								</svg>
 							</div>
-							<h3 className="text-2xl font-bold text-gray-800 mb-2">
+							<h3 className="text-2xl font-bold text-slate-700 mb-2">
 								Ceremony
 							</h3>
 						</div>
 
 						<div className="space-y-6">
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<div className="w-8 h-8 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-600"
+										className="w-4 h-4 text-rose-400"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -50,21 +50,21 @@ export default function Details() {
 										<path
 											strokeLinecap="round"
 											strokeLinejoin="round"
-											strokeWidth={2}
+											strokeWidth={1.5}
 											d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
 										/>
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-gray-800">Time</h4>
-									<p className="text-gray-600">4:00 PM - 5:00 PM</p>
+									<h4 className="font-semibold text-slate-700">Time</h4>
+									<p className="text-slate-500">4:00 PM - 5:00 PM</p>
 								</div>
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<div className="w-8 h-8 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-600"
+										className="w-4 h-4 text-rose-400"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -72,28 +72,28 @@ export default function Details() {
 										<path
 											strokeLinecap="round"
 											strokeLinejoin="round"
-											strokeWidth={2}
+											strokeWidth={1.5}
 											d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
 										/>
 										<path
 											strokeLinecap="round"
 											strokeLinejoin="round"
-											strokeWidth={2}
+											strokeWidth={1.5}
 											d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 										/>
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-gray-800">Location</h4>
-									<p className="text-gray-600">Sunset Gardens Chapel</p>
-									<p className="text-gray-600">123 Rose Avenue, California</p>
+									<h4 className="font-semibold text-slate-700">Location</h4>
+									<p className="text-slate-500">Sunset Gardens Chapel</p>
+									<p className="text-slate-500">123 Rose Avenue, California</p>
 								</div>
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<div className="w-8 h-8 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-600"
+										className="w-4 h-4 text-rose-400"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -101,25 +101,25 @@ export default function Details() {
 										<path
 											strokeLinecap="round"
 											strokeLinejoin="round"
-											strokeWidth={2}
+											strokeWidth={1.5}
 											d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
 										/>
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-gray-800">Dress Code</h4>
-									<p className="text-gray-600">Formal / Cocktail Attire</p>
+									<h4 className="font-semibold text-slate-700">Dress Code</h4>
+									<p className="text-slate-500">Formal / Cocktail Attire</p>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					{/* Reception Details */}
-					<div className="bg-white rounded-2xl shadow-lg p-8">
+					<div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-rose-100/50">
 						<div className="text-center mb-8">
-							<div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+							<div className="w-16 h-16 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
 								<svg
-									className="w-8 h-8 text-rose-600"
+									className="w-8 h-8 text-rose-400"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
@@ -127,12 +127,12 @@ export default function Details() {
 									<path
 										strokeLinecap="round"
 										strokeLinejoin="round"
-										strokeWidth={2}
+										strokeWidth={1.5}
 										d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
 									/>
 								</svg>
 							</div>
-							<h3 className="text-2xl font-bold text-gray-800 mb-2">
+							<h3 className="text-2xl font-bold text-slate-700 mb-2">
 								Reception
 							</h3>
 						</div>

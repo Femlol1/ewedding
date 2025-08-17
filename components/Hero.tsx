@@ -8,7 +8,7 @@ export default function Hero() {
 		>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
-				<div className="w-full h-full bg-gradient-to-br from-rose-200 via-pink-100 to-rose-100"></div>
+				<div className="w-full h-full bg-gradient-to-br from-rose-100/40 via-pink-50/60 to-blush-25"></div>
 				{/* You can replace this with an actual background image */}
 				{/* <Image
           src="/hero-bg.jpg"
@@ -17,7 +17,7 @@ export default function Hero() {
           className="object-cover"
           priority
         /> */}
-				<div className="absolute inset-0 bg-black/20"></div>
+				<div className="absolute inset-0 bg-white/10"></div>
 			</div>
 
 			{/* Content */}
@@ -25,17 +25,17 @@ export default function Hero() {
 				<div className="space-y-8">
 					{/* Names */}
 					<div className="space-y-4">
-						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-800 mb-4">
-							Sarah <span className="text-rose-600">&</span> John
+						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-700 mb-4">
+							Sarah <span className="text-rose-400">&</span> John
 						</h1>
-						<p className="text-xl sm:text-2xl text-gray-700 font-light">
+						<p className="text-xl sm:text-2xl text-slate-600 font-light">
 							We're getting married!
 						</p>
 					</div>
 
 					{/* Date */}
-					<div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 sm:p-8 shadow-lg inline-block">
-						<p className="text-lg sm:text-xl text-gray-600 mb-2">
+					<div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-soft inline-block border border-rose-100/30">
+						<p className="text-lg sm:text-xl text-slate-500 mb-2">
 							Save the Date
 						</p>
 						<p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">

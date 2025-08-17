@@ -2,15 +2,17 @@
 
 export default function Footer() {
 	return (
-		<footer className="bg-gray-800 text-white py-12">
+		<footer className="bg-gradient-to-br from-slate-700 to-slate-800 text-white py-12">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{/* Wedding Info */}
 					<div className="text-center md:text-left">
-						<h3 className="text-2xl font-bold text-rose-400 mb-4">Emmanuel</h3>
-						<p className="text-gray-300 mb-2">December 15, 2026</p>
-						<p className="text-gray-300 mb-2">Sunset Gardens, California</p>
-						<p className="text-gray-300">Celebrating love and new beginnings</p>
+						<h3 className="text-2xl font-bold text-rose-300 mb-4">Emmanuel</h3>
+						<p className="text-slate-300 mb-2">December 15, 2026</p>
+						<p className="text-slate-300 mb-2">Sunset Gardens, California</p>
+						<p className="text-slate-300">
+							Celebrating love and new beginnings
+						</p>
 					</div>
 
 					{/* Quick Links */}
@@ -23,7 +25,7 @@ export default function Footer() {
 										.getElementById("home")
 										?.scrollIntoView({ behavior: "smooth" })
 								}
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200 mx-auto"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200 mx-auto"
 							>
 								Home
 							</button>
@@ -33,7 +35,7 @@ export default function Footer() {
 										.getElementById("about")
 										?.scrollIntoView({ behavior: "smooth" })
 								}
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200 mx-auto"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200 mx-auto"
 							>
 								Our Story
 							</button>
@@ -43,7 +45,7 @@ export default function Footer() {
 										.getElementById("details")
 										?.scrollIntoView({ behavior: "smooth" })
 								}
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200 mx-auto"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200 mx-auto"
 							>
 								Details
 							</button>
@@ -53,7 +55,7 @@ export default function Footer() {
 										.getElementById("gallery")
 										?.scrollIntoView({ behavior: "smooth" })
 								}
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200 mx-auto"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200 mx-auto"
 							>
 								Gallery
 							</button>
@@ -63,7 +65,7 @@ export default function Footer() {
 										.getElementById("rsvp")
 										?.scrollIntoView({ behavior: "smooth" })
 								}
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200 mx-auto"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200 mx-auto"
 							>
 								RSVP
 							</button>
@@ -76,13 +78,13 @@ export default function Footer() {
 						<div className="space-y-2 mb-4">
 							<a
 								href="mailto:Emmanuel.wedding@email.com"
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200"
 							>
 								Emmanuel.wedding@email.com
 							</a>
 							<a
 								href="tel:+447377788552"
-								className="block text-gray-300 hover:text-rose-400 transition-colors duration-200"
+								className="block text-slate-300 hover:text-rose-300 transition-colors duration-200"
 							>
 								(44) 7377788552
 							</a>
@@ -92,7 +94,7 @@ export default function Footer() {
 						<div className="flex justify-center md:justify-end space-x-4">
 							<a
 								href="#"
-								className="text-gray-300 hover:text-rose-400 transition-colors duration-200"
+								className="text-slate-300 hover:text-rose-300 transition-colors duration-200"
 								aria-label="Instagram"
 							>
 								<svg
@@ -105,7 +107,7 @@ export default function Footer() {
 							</a>
 							<a
 								href="#"
-								className="text-gray-300 hover:text-rose-400 transition-colors duration-200"
+								className="text-slate-300 hover:text-rose-300 transition-colors duration-200"
 								aria-label="Facebook"
 							>
 								<svg
@@ -118,7 +120,7 @@ export default function Footer() {
 							</a>
 							<a
 								href="#"
-								className="text-gray-300 hover:text-rose-400 transition-colors duration-200"
+								className="text-slate-300 hover:text-rose-300 transition-colors duration-200"
 								aria-label="Twitter"
 							>
 								<svg
@@ -134,16 +136,16 @@ export default function Footer() {
 				</div>
 
 				{/* Bottom Section */}
-				<div className="border-t border-gray-700 mt-8 pt-8 text-center">
+				<div className="border-t border-slate-600 mt-8 pt-8 text-center">
 					<div className="flex flex-col md:flex-row justify-between items-center">
-						<p className="text-gray-400 text-sm mb-4 md:mb-0">
+						<p className="text-slate-400 text-sm mb-4 md:mb-0">
 							© 2026 Emmanuel's Wedding. Made with ❤️ for our special day.
 						</p>
 						<div className="flex space-x-6 text-sm">
-							<button className="text-gray-400 hover:text-rose-400 transition-colors duration-200">
+							<button className="text-slate-400 hover:text-rose-300 transition-colors duration-200">
 								Privacy Policy
 							</button>
-							<button className="text-gray-400 hover:text-rose-400 transition-colors duration-200">
+							<button className="text-slate-400 hover:text-rose-300 transition-colors duration-200">
 								Wedding Hashtag: #SarahAndJohn2026
 							</button>
 						</div>

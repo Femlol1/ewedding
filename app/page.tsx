@@ -8,7 +8,7 @@ import RSVP from "../components/RSVP";
 
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-50">
+		<div className="min-h-screen bg-gradient-to-br from-rose-25 via-pink-25 to-blush-25">
 			<Navigation />
 			<Hero />
 			<About />

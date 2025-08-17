@@ -42,13 +42,16 @@ export default function Gallery() {
 	};
 
 	return (
-		<section id="gallery" className="py-20 bg-white">
+		<section
+			id="gallery"
+			className="py-20 bg-gradient-to-br from-pearl via-ivory to-champagne"
+		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-16">
-					<h2 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
+					<h2 className="text-4xl sm:text-5xl font-bold text-slate-700 mb-4">
 						Our Gallery
 					</h2>
-					<p className="text-xl text-gray-600 max-w-3xl mx-auto">
+					<p className="text-xl text-slate-500 max-w-3xl mx-auto">
 						Capturing moments of our journey together
 					</p>
 				</div>
@@ -58,30 +61,30 @@ export default function Gallery() {
 					{images.map((image, index) => (
 						<div
 							key={image.id}
-							className="relative aspect-square overflow-hidden rounded-xl cursor-pointer group"
+							className="relative aspect-square overflow-hidden rounded-2xl cursor-pointer group shadow-soft border border-white/50"
 							onClick={() => openModal(image.id)}
 						>
 							{/* Placeholder colored backgrounds instead of actual images */}
 							<div
-								className={`w-full h-full flex items-center justify-center text-white font-semibold
+								className={`w-full h-full flex items-center justify-center text-slate-600 font-semibold
                 ${
 									index % 4 === 0
-										? "bg-gradient-to-br from-rose-400 to-pink-500"
+										? "bg-gradient-to-br from-rose-200/70 to-pink-200/70"
 										: ""
 								}
                 ${
 									index % 4 === 1
-										? "bg-gradient-to-br from-blue-400 to-indigo-500"
+										? "bg-gradient-to-br from-blue-200/70 to-indigo-200/70"
 										: ""
 								}
                 ${
 									index % 4 === 2
-										? "bg-gradient-to-br from-green-400 to-emerald-500"
+										? "bg-gradient-to-br from-green-200/70 to-emerald-200/70"
 										: ""
 								}
                 ${
 									index % 4 === 3
-										? "bg-gradient-to-br from-purple-400 to-pink-500"
+										? "bg-gradient-to-br from-purple-200/70 to-pink-200/70"
 										: ""
 								}
               `}
@@ -183,25 +186,25 @@ export default function Gallery() {
 									const image = images[imageIndex];
 									return (
 										<div
-											className={`w-full max-w-2xl aspect-square rounded-lg flex items-center justify-center text-white text-2xl font-bold
+											className={`w-full max-w-2xl aspect-square rounded-lg flex items-center justify-center text-slate-600 text-2xl font-bold shadow-soft
                       ${
 												imageIndex % 4 === 0
-													? "bg-gradient-to-br from-rose-400 to-pink-500"
+													? "bg-gradient-to-br from-rose-200/70 to-pink-200/70"
 													: ""
 											}
                       ${
 												imageIndex % 4 === 1
-													? "bg-gradient-to-br from-blue-400 to-indigo-500"
+													? "bg-gradient-to-br from-blue-200/70 to-indigo-200/70"
 													: ""
 											}
                       ${
 												imageIndex % 4 === 2
-													? "bg-gradient-to-br from-green-400 to-emerald-500"
+													? "bg-gradient-to-br from-green-200/70 to-emerald-200/70"
 													: ""
 											}
                       ${
 												imageIndex % 4 === 3
-													? "bg-gradient-to-br from-purple-400 to-pink-500"
+													? "bg-gradient-to-br from-purple-200/70 to-pink-200/70"
 													: ""
 											}
                     `}

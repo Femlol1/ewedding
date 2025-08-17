@@ -36,13 +36,13 @@ export default function RSVP() {
 		return (
 			<section
 				id="rsvp"
-				className="py-20 bg-gradient-to-br from-rose-50 to-pink-50"
+				className="py-20 bg-gradient-to-br from-rose-25 via-pink-25 to-blush-25"
 			>
 				<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-					<div className="bg-white rounded-2xl shadow-lg p-8">
-						<div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+					<div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-white/50">
+						<div className="w-16 h-16 bg-green-100/80 rounded-full flex items-center justify-center mx-auto mb-6">
 							<svg
-								className="w-8 h-8 text-green-600"
+								className="w-8 h-8 text-green-500"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -55,15 +55,15 @@ export default function RSVP() {
 								/>
 							</svg>
 						</div>
-						<h2 className="text-3xl font-bold text-gray-800 mb-4">
+						<h2 className="text-3xl font-bold text-slate-700 mb-4">
 							Thank You!
 						</h2>
-						<p className="text-gray-600 mb-6">
+						<p className="text-slate-600 mb-6">
 							Your RSVP has been received. We can't wait to celebrate with you!
 						</p>
 						<button
 							onClick={() => setIsSubmitted(false)}
-							className="text-rose-600 hover:text-rose-700 font-medium"
+							className="text-rose-400 hover:text-rose-500 font-medium"
 						>
 							Submit Another RSVP
 						</button>
@@ -76,26 +76,26 @@ export default function RSVP() {
 	return (
 		<section
 			id="rsvp"
-			className="py-20 bg-gradient-to-br from-rose-50 to-pink-50"
+			className="py-20 bg-gradient-to-br from-rose-25 via-pink-25 to-blush-25"
 		>
 			<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-12">
-					<h2 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
+					<h2 className="text-4xl sm:text-5xl font-bold text-slate-700 mb-4">
 						RSVP
 					</h2>
-					<p className="text-xl text-gray-600 max-w-3xl mx-auto">
+					<p className="text-xl text-slate-500 max-w-3xl mx-auto">
 						Please let us know if you'll be joining us for our special day
 					</p>
 				</div>
 
-				<div className="bg-white rounded-2xl shadow-lg p-8">
+				<div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-white/50">
 					<form onSubmit={handleSubmit} className="space-y-6">
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 							{/* Name */}
 							<div>
 								<label
 									htmlFor="name"
-									className="block text-sm font-medium text-gray-700 mb-2"
+									className="block text-sm font-medium text-slate-600 mb-2"
 								>
 									Full Name *
 								</label>
@@ -106,7 +106,7 @@ export default function RSVP() {
 									required
 									value={formData.name}
 									onChange={handleChange}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+									className="w-full px-4 py-3 border border-rose-200/50 rounded-xl focus:ring-2 focus:ring-rose-300 focus:border-transparent bg-white/70 text-slate-700"
 									placeholder="Enter your full name"
 								/>
 							</div>
@@ -115,7 +115,7 @@ export default function RSVP() {
 							<div>
 								<label
 									htmlFor="email"
-									className="block text-sm font-medium text-gray-700 mb-2"
+									className="block text-sm font-medium text-slate-600 mb-2"
 								>
 									Email Address *
 								</label>
@@ -126,7 +126,7 @@ export default function RSVP() {
 									required
 									value={formData.email}
 									onChange={handleChange}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+									className="w-full px-4 py-3 border border-rose-200/50 rounded-xl focus:ring-2 focus:ring-rose-300 focus:border-transparent bg-white/70 text-slate-700"
 									placeholder="Enter your email"
 								/>
 							</div>
@@ -137,7 +137,7 @@ export default function RSVP() {
 							<div>
 								<label
 									htmlFor="guests"
-									className="block text-sm font-medium text-gray-700 mb-2"
+									className="block text-sm font-medium text-slate-600 mb-2"
 								>
 									Number of Guests *
 								</label>
@@ -147,7 +147,7 @@ export default function RSVP() {
 									required
 									value={formData.guests}
 									onChange={handleChange}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+									className="w-full px-4 py-3 border border-rose-200/50 rounded-xl focus:ring-2 focus:ring-rose-300 focus:border-transparent bg-white/70 text-slate-700"
 								>
 									<option value="1">1 Guest</option>
 									<option value="2">2 Guests</option>
@@ -160,7 +160,7 @@ export default function RSVP() {
 							<div>
 								<label
 									htmlFor="attendance"
-									className="block text-sm font-medium text-gray-700 mb-2"
+									className="block text-sm font-medium text-slate-600 mb-2"
 								>
 									Will you attend? *
 								</label>
@@ -170,7 +170,7 @@ export default function RSVP() {
 									required
 									value={formData.attendance}
 									onChange={handleChange}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+									className="w-full px-4 py-3 border border-rose-200/50 rounded-xl focus:ring-2 focus:ring-rose-300 focus:border-transparent bg-white/70 text-slate-700"
 								>
 									<option value="">Please select</option>
 									<option value="yes">Yes, I'll be there!</option>
@@ -183,7 +183,7 @@ export default function RSVP() {
 						<div>
 							<label
 								htmlFor="dietary"
-								className="block text-sm font-medium text-gray-700 mb-2"
+								className="block text-sm font-medium text-slate-600 mb-2"
 							>
 								Dietary Requirements
 							</label>
@@ -193,7 +193,7 @@ export default function RSVP() {
 								name="dietary"
 								value={formData.dietary}
 								onChange={handleChange}
-								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+								className="w-full px-4 py-3 border border-rose-200/50 rounded-xl focus:ring-2 focus:ring-rose-300 focus:border-transparent bg-white/70 text-slate-700"
 								placeholder="Any allergies or dietary restrictions?"
 							/>
 						</div>
@@ -202,7 +202,7 @@ export default function RSVP() {
 						<div>
 							<label
 								htmlFor="message"
-								className="block text-sm font-medium text-gray-700 mb-2"
+								className="block text-sm font-medium text-slate-600 mb-2"
 							>
 								Special Message
 							</label>
@@ -212,7 +212,7 @@ export default function RSVP() {
 								rows={4}
 								value={formData.message}
 								onChange={handleChange}
-								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+								className="w-full px-4 py-3 border border-rose-200/50 rounded-xl focus:ring-2 focus:ring-rose-300 focus:border-transparent bg-white/70 text-slate-700"
 								placeholder="Any special message for the couple?"
 							/>
 						</div>
@@ -221,7 +221,7 @@ export default function RSVP() {
 						<div className="text-center pt-4">
 							<button
 								type="submit"
-								className="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+								className="bg-gradient-to-r from-rose-400 to-pink-400 hover:from-rose-500 hover:to-pink-500 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-soft"
 							>
 								Send RSVP
 							</button>
@@ -231,13 +231,13 @@ export default function RSVP() {
 
 				{/* Contact Info */}
 				<div className="text-center mt-12">
-					<p className="text-gray-600 mb-4">
+					<p className="text-slate-500 mb-4">
 						Having trouble with the form? Contact us directly:
 					</p>
 					<div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6">
 						<a
 							href="mailto:Emmanuel.wedding@email.com"
-							className="flex items-center text-rose-600 hover:text-rose-700 transition-colors"
+							className="flex items-center text-rose-400 hover:text-rose-500 transition-colors"
 						>
 							<svg
 								className="w-5 h-5 mr-2"
@@ -256,7 +256,7 @@ export default function RSVP() {
 						</a>
 						<a
 							href="tel:+447377788552"
-							className="flex items-center text-rose-600 hover:text-rose-700 transition-colors"
+							className="flex items-center text-rose-400 hover:text-rose-500 transition-colors"
 						>
 							<svg
 								className="w-5 h-5 mr-2"
