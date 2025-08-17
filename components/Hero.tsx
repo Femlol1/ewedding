@@ -8,16 +8,13 @@ export default function Hero() {
 		>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
-				<div className="w-full h-full bg-gradient-to-br from-rose-100/40 via-pink-50/60 to-blush-25"></div>
-				{/* You can replace this with an actual background image */}
-				{/* <Image
-          src="/hero-bg.jpg"
-          alt="Wedding background"
-          fill
-          className="object-cover"
-          priority
-        /> */}
-				<div className="absolute inset-0 bg-white/10"></div>
+				<img
+					src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop&crop=center"
+					alt="Wedding background"
+					className="w-full h-full object-cover"
+				/>
+				<div className="absolute inset-0 bg-forest-green/20"></div>
+				<div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream/10 to-warm-white/30"></div>
 			</div>
 
 			{/* Content */}
@@ -25,42 +22,42 @@ export default function Hero() {
 				<div className="space-y-8">
 					{/* Names */}
 					<div className="space-y-4">
-						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-700 mb-4">
-							Sarah <span className="text-rose-400">&</span> John
+						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-forest-green mb-4">
+							Sarah <span className="text-champagne-gold">&</span> John
 						</h1>
-						<p className="text-xl sm:text-2xl text-slate-600 font-light">
+						<p className="text-xl sm:text-2xl text-sage-green font-light">
 							We're getting married!
 						</p>
 					</div>
 
 					{/* Date */}
-					<div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-soft inline-block border border-rose-100/30">
-						<p className="text-lg sm:text-xl text-slate-500 mb-2">
+					<div className="bg-warm-white/90 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-soft inline-block border border-champagne-gold/20">
+						<p className="text-lg sm:text-xl text-soft-gray mb-2">
 							Save the Date
 						</p>
-						<p className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
+						<p className="text-3xl sm:text-4xl font-bold text-forest-green mb-2">
 							December 15, 2026
 						</p>
-						<p className="text-lg text-gray-600">Sunset Gardens, California</p>
+						<p className="text-lg text-sage-green">Sunset Gardens, California</p>
 					</div>
 
 					{/* Countdown Timer */}
 					<div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-						<div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 text-center">
-							<div className="text-2xl font-bold text-rose-600">120</div>
-							<div className="text-sm text-gray-600">Days</div>
+						<div className="bg-warm-white/90 backdrop-blur-sm rounded-lg p-4 text-center border border-champagne-gold/30">
+							<div className="text-2xl font-bold text-sage-green">120</div>
+							<div className="text-sm text-soft-gray">Days</div>
 						</div>
-						<div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 text-center">
-							<div className="text-2xl font-bold text-rose-600">14</div>
-							<div className="text-sm text-gray-600">Hours</div>
+						<div className="bg-warm-white/90 backdrop-blur-sm rounded-lg p-4 text-center border border-champagne-gold/30">
+							<div className="text-2xl font-bold text-sage-green">14</div>
+							<div className="text-sm text-soft-gray">Hours</div>
 						</div>
-						<div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 text-center">
-							<div className="text-2xl font-bold text-rose-600">32</div>
-							<div className="text-sm text-gray-600">Minutes</div>
+						<div className="bg-warm-white/90 backdrop-blur-sm rounded-lg p-4 text-center border border-champagne-gold/30">
+							<div className="text-2xl font-bold text-sage-green">32</div>
+							<div className="text-sm text-soft-gray">Minutes</div>
 						</div>
-						<div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 text-center">
-							<div className="text-2xl font-bold text-rose-600">18</div>
-							<div className="text-sm text-gray-600">Seconds</div>
+						<div className="bg-warm-white/90 backdrop-blur-sm rounded-lg p-4 text-center border border-champagne-gold/30">
+							<div className="text-2xl font-bold text-sage-green">18</div>
+							<div className="text-sm text-soft-gray">Seconds</div>
 						</div>
 					</div>
 
@@ -72,7 +69,7 @@ export default function Hero() {
 									.getElementById("rsvp")
 									?.scrollIntoView({ behavior: "smooth" })
 							}
-							className="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+							className="bg-gradient-to-r from-sage-green to-emerald hover:from-forest-green hover:to-sage-green text-warm-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-soft border border-champagne-gold/30"
 						>
 							RSVP Now
 						</button>
@@ -83,7 +80,7 @@ export default function Hero() {
 			{/* Scroll indicator */}
 			<div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
 				<svg
-					className="w-6 h-6 text-gray-700"
+					className="w-6 h-6 text-forest-green"
 					fill="none"
 					stroke="currentColor"
 					viewBox="0 0 24 24"

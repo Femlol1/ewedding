@@ -2,25 +2,25 @@ export default function Details() {
 	return (
 		<section
 			id="details"
-			className="py-20 bg-gradient-to-br from-rose-25 via-pink-25 to-blush-25"
+			className="py-20 bg-gradient-to-br from-warm-white via-cream to-warm-beige"
 		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-16">
-					<h2 className="text-4xl sm:text-5xl font-bold text-slate-700 mb-4">
+					<h2 className="text-4xl sm:text-5xl font-bold text-forest-green mb-4">
 						Wedding Details
 					</h2>
-					<p className="text-xl text-slate-500 max-w-3xl mx-auto">
+					<p className="text-xl text-sage-green max-w-3xl mx-auto">
 						All the important information for our special day
 					</p>
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 					{/* Ceremony Details */}
-					<div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-rose-100/50">
+					<div className="bg-warm-white/90 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-champagne-gold/40">
 						<div className="text-center mb-8">
-							<div className="w-16 h-16 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
+							<div className="w-16 h-16 bg-gradient-to-br from-sage-green/20 to-emerald/30 rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
 								<svg
-									className="w-8 h-8 text-rose-400"
+									className="w-8 h-8 text-sage-green"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
@@ -33,16 +33,16 @@ export default function Details() {
 									/>
 								</svg>
 							</div>
-							<h3 className="text-2xl font-bold text-slate-700 mb-2">
+							<h3 className="text-2xl font-bold text-forest-green mb-2">
 								Ceremony
 							</h3>
 						</div>
 
 						<div className="space-y-6">
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
+								<div className="w-8 h-8 bg-gradient-to-br from-champagne-gold/30 to-bronze/40 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-400"
+										className="w-4 h-4 text-sage-green"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -56,15 +56,15 @@ export default function Details() {
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-slate-700">Time</h4>
-									<p className="text-slate-500">4:00 PM - 5:00 PM</p>
+									<h4 className="font-semibold text-forest-green">Time</h4>
+									<p className="text-charcoal">4:00 PM - 5:00 PM</p>
 								</div>
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
+								<div className="w-8 h-8 bg-gradient-to-br from-champagne-gold/30 to-bronze/40 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-400"
+										className="w-4 h-4 text-sage-green"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -84,16 +84,16 @@ export default function Details() {
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-slate-700">Location</h4>
-									<p className="text-slate-500">Sunset Gardens Chapel</p>
-									<p className="text-slate-500">123 Rose Avenue, California</p>
+									<h4 className="font-semibold text-forest-green">Location</h4>
+									<p className="text-charcoal">Sunset Gardens Chapel</p>
+									<p className="text-charcoal">123 Rose Avenue, California</p>
 								</div>
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
+								<div className="w-8 h-8 bg-gradient-to-br from-champagne-gold/30 to-bronze/40 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-400"
+										className="w-4 h-4 text-sage-green"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -107,19 +107,19 @@ export default function Details() {
 									</svg>
 								</div>
 								<div>
-									<h4 className="font-semibold text-slate-700">Dress Code</h4>
-									<p className="text-slate-500">Formal / Cocktail Attire</p>
+									<h4 className="font-semibold text-forest-green">Dress Code</h4>
+									<p className="text-charcoal">Formal / Cocktail Attire</p>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					{/* Reception Details */}
-					<div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-rose-100/50">
+					<div className="bg-warm-white/90 backdrop-blur-sm rounded-3xl shadow-soft p-8 border border-champagne-gold/40">
 						<div className="text-center mb-8">
-							<div className="w-16 h-16 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
+							<div className="w-16 h-16 bg-gradient-to-br from-sage-green/20 to-emerald/30 rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
 								<svg
-									className="w-8 h-8 text-rose-400"
+									className="w-8 h-8 text-sage-green"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
@@ -132,16 +132,16 @@ export default function Details() {
 									/>
 								</svg>
 							</div>
-							<h3 className="text-2xl font-bold text-slate-700 mb-2">
+							<h3 className="text-2xl font-bold text-forest-green mb-2">
 								Reception
 							</h3>
 						</div>
 
 						<div className="space-y-6">
 							<div className="flex items-start space-x-4">
-								<div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+								<div className="w-8 h-8 bg-gradient-to-br from-champagne-gold/30 to-bronze/40 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-soft">
 									<svg
-										className="w-4 h-4 text-rose-600"
+										className="w-4 h-4 text-sage-green"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"

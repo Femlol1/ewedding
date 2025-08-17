@@ -5,16 +5,56 @@ import { useState } from "react";
 export default function Gallery() {
 	const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-	// Placeholder images - you can replace these with actual image URLs
+	// Stock wedding images from Unsplash
 	const images = [
-		{ id: 1, title: "Engagement Shoot", category: "engagement" },
-		{ id: 2, title: "Our First Date", category: "memories" },
-		{ id: 3, title: "Beach Vacation", category: "travel" },
-		{ id: 4, title: "The Proposal", category: "engagement" },
-		{ id: 5, title: "Family Gathering", category: "memories" },
-		{ id: 6, title: "Mountain Trip", category: "travel" },
-		{ id: 7, title: "Anniversary Dinner", category: "memories" },
-		{ id: 8, title: "Ring Close-up", category: "engagement" },
+		{ 
+			id: 1, 
+			title: "Engagement Shoot", 
+			category: "engagement",
+			url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=500&fit=crop&crop=faces"
+		},
+		{ 
+			id: 2, 
+			title: "Our First Date", 
+			category: "memories",
+			url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500&fit=crop&crop=center"
+		},
+		{ 
+			id: 3, 
+			title: "Beach Vacation", 
+			category: "travel",
+			url: "https://images.unsplash.com/photo-1516627145497-ae2af99fcd24?w=500&h=500&fit=crop&crop=center"
+		},
+		{ 
+			id: 4, 
+			title: "The Proposal", 
+			category: "engagement",
+			url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&h=500&fit=crop&crop=center"
+		},
+		{ 
+			id: 5, 
+			title: "Family Gathering", 
+			category: "memories",
+			url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=500&h=500&fit=crop&crop=center"
+		},
+		{ 
+			id: 6, 
+			title: "Mountain Trip", 
+			category: "travel",
+			url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&h=500&fit=crop&crop=center"
+		},
+		{ 
+			id: 7, 
+			title: "Anniversary Dinner", 
+			category: "memories",
+			url: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=500&h=500&fit=crop&crop=center"
+		},
+		{ 
+			id: 8, 
+			title: "Ring Close-up", 
+			category: "engagement",
+			url: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&h=500&fit=crop&crop=center"
+		},
 	];
 
 	const openModal = (imageId: number) => {
@@ -44,14 +84,14 @@ export default function Gallery() {
 	return (
 		<section
 			id="gallery"
-			className="py-20 bg-gradient-to-br from-pearl via-ivory to-champagne"
+			className="py-20 bg-gradient-to-br from-light-sage via-cream to-warm-beige"
 		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-16">
-					<h2 className="text-4xl sm:text-5xl font-bold text-slate-700 mb-4">
+					<h2 className="text-4xl sm:text-5xl font-bold text-forest-green mb-4">
 						Our Gallery
 					</h2>
-					<p className="text-xl text-slate-500 max-w-3xl mx-auto">
+					<p className="text-xl text-sage-green max-w-3xl mx-auto">
 						Capturing moments of our journey together
 					</p>
 				</div>
@@ -61,41 +101,25 @@ export default function Gallery() {
 					{images.map((image, index) => (
 						<div
 							key={image.id}
-							className="relative aspect-square overflow-hidden rounded-2xl cursor-pointer group shadow-soft border border-white/50"
+							className="relative aspect-square overflow-hidden rounded-2xl cursor-pointer group shadow-soft-green border border-champagne-gold/30"
 							onClick={() => openModal(image.id)}
 						>
-							{/* Placeholder colored backgrounds instead of actual images */}
-							<div
-								className={`w-full h-full flex items-center justify-center text-slate-600 font-semibold
-                ${
-									index % 4 === 0
-										? "bg-gradient-to-br from-rose-200/70 to-pink-200/70"
-										: ""
-								}
-                ${
-									index % 4 === 1
-										? "bg-gradient-to-br from-blue-200/70 to-indigo-200/70"
-										: ""
-								}
-                ${
-									index % 4 === 2
-										? "bg-gradient-to-br from-green-200/70 to-emerald-200/70"
-										: ""
-								}
-                ${
-									index % 4 === 3
-										? "bg-gradient-to-br from-purple-200/70 to-pink-200/70"
-										: ""
-								}
-              `}
-							>
+							{/* Actual stock images */}
+							<img
+								src={image.url}
+								alt={image.title}
+								className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+							/>
+							
+							{/* Image title overlay */}
+							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-forest-green/80 to-transparent p-4">
 								<div className="text-center">
-									<div className="text-sm opacity-90">{image.title}</div>
+									<div className="text-sm text-warm-white font-medium">{image.title}</div>
 								</div>
 							</div>
 
 							{/* Hover overlay */}
-							<div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+							<div className="absolute inset-0 bg-forest-green/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
 								<svg
 									className="w-8 h-8 text-white"
 									fill="none"
@@ -185,32 +209,11 @@ export default function Gallery() {
 									);
 									const image = images[imageIndex];
 									return (
-										<div
-											className={`w-full max-w-2xl aspect-square rounded-lg flex items-center justify-center text-slate-600 text-2xl font-bold shadow-soft
-                      ${
-												imageIndex % 4 === 0
-													? "bg-gradient-to-br from-rose-200/70 to-pink-200/70"
-													: ""
-											}
-                      ${
-												imageIndex % 4 === 1
-													? "bg-gradient-to-br from-blue-200/70 to-indigo-200/70"
-													: ""
-											}
-                      ${
-												imageIndex % 4 === 2
-													? "bg-gradient-to-br from-green-200/70 to-emerald-200/70"
-													: ""
-											}
-                      ${
-												imageIndex % 4 === 3
-													? "bg-gradient-to-br from-purple-200/70 to-pink-200/70"
-													: ""
-											}
-                    `}
-										>
-											{image.title}
-										</div>
+										<img
+											src={image.url}
+											alt={image.title}
+											className="w-full max-w-4xl max-h-[80vh] object-contain rounded-lg shadow-soft-green"
+										/>
 									);
 								})()}
 							</div>
