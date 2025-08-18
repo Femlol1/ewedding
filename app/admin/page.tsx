@@ -130,22 +130,85 @@ export default function AdminDashboard() {
 		}
 	};
 
+	const downloadRSVPs = async () => {
+		try {
+			const response = await fetch("/api/rsvp?download=csv");
+			if (response.ok) {
+				const blob = await response.blob();
+				const url = window.URL.createObjectURL(blob);
+				const link = document.createElement("a");
+				link.href = url;
+				link.download = `rsvps-${new Date().toISOString().split("T")[0]}.csv`;
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+				window.URL.revokeObjectURL(url);
+			}
+		} catch (error) {
+			console.error("Failed to download RSVPs:", error);
+		}
+	};
+
+	const migrateRSVPIds = async () => {
+		if (
+			!confirm(
+				"This will update all RSVP IDs to the new 8-digit format. Continue?"
+			)
+		)
+			return;
+
+		try {
+			const response = await fetch("/api/rsvp?action=migrate-ids", {
+				method: "PATCH",
+			});
+
+			if (response.ok) {
+				const result = await response.json();
+				alert(result.message);
+				await fetchRSVPs(); // Refresh the data
+			} else {
+				throw new Error("Migration failed");
+			}
+		} catch (error) {
+			console.error("Failed to migrate RSVP IDs:", error);
+			alert("Failed to migrate RSVP IDs. Please try again.");
+		}
+	};
+
 	const filteredOrders =
 		orderFilter === "all"
 			? orders
 			: orders.filter((order) => order.orderStatus === orderFilter);
 
 	const filteredRSVPs = (() => {
+		let filtered;
 		switch (rsvpFilter) {
 			case "all":
-				return rsvps;
+				filtered = rsvps;
+				break;
 			case "responded":
-				return rsvps.filter((rsvp) => rsvp.responded);
+				filtered = rsvps.filter((rsvp) => rsvp.responded);
+				break;
 			case "pending":
-				return rsvps.filter((rsvp) => !rsvp.responded);
+				filtered = rsvps.filter((rsvp) => !rsvp.responded);
+				break;
 			default:
-				return rsvps.filter((rsvp) => rsvp.attendance === rsvpFilter);
+				filtered = rsvps.filter((rsvp) => rsvp.attendance === rsvpFilter);
+				break;
 		}
+
+		// Sort by surname (last name) alphabetically
+		return filtered.sort((a, b) => {
+			const getSurname = (name: string) => {
+				const parts = name.trim().split(" ");
+				return parts[parts.length - 1].toLowerCase();
+			};
+
+			const surnameA = getSurname(a.primaryGuest.name);
+			const surnameB = getSurname(b.primaryGuest.name);
+
+			return surnameA.localeCompare(surnameB);
+		});
 	})();
 
 	const formatPrice = (price: number) => {
@@ -550,12 +613,53 @@ export default function AdminDashboard() {
 							<h2 className="text-xl font-bold text-gray-900">
 								RSVP Management
 							</h2>
-							<button
-								onClick={fetchRSVPs}
-								className="bg-forest-green text-white px-4 py-2 rounded-lg hover:bg-sage-green transition-colors"
-							>
-								Refresh RSVPs
-							</button>
+							<div className="flex gap-2">
+								<button
+									onClick={downloadRSVPs}
+									className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+								>
+									<svg
+										className="w-4 h-4"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+										/>
+									</svg>
+									Download CSV
+								</button>
+								<button
+									onClick={migrateRSVPIds}
+									className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
+									title="Update existing RSVP IDs to 8-digit format"
+								>
+									<svg
+										className="w-4 h-4"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+										/>
+									</svg>
+									Migrate IDs
+								</button>
+								<button
+									onClick={fetchRSVPs}
+									className="bg-forest-green text-white px-4 py-2 rounded-lg hover:bg-sage-green transition-colors"
+								>
+									Refresh RSVPs
+								</button>
+							</div>
 						</div>
 
 						{/* RSVP Stats Summary */}

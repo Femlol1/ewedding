@@ -15,6 +15,16 @@ import { RSVP, RSVPStats } from "../types/rsvp";
 
 const COLLECTION_NAME = "rsvps";
 
+// Generate a unique 8-digit alphanumeric RSVP ID
+export const generateRSVPId = () => {
+	const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	let result = "";
+	for (let i = 0; i < 8; i++) {
+		result += chars.charAt(Math.floor(Math.random() * chars.length));
+	}
+	return result;
+};
+
 export const rsvpService = {
 	// Create a new RSVP
 	async createRSVP(rsvp: Omit<RSVP, "id">): Promise<string> {
@@ -160,6 +170,35 @@ export const rsvpService = {
 			});
 		} catch (error) {
 			console.error("Error fetching RSVPs by attendance:", error);
+			throw error;
+		}
+	},
+
+	// Migration utility: Update existing RSVPs to use 8-digit alphanumeric IDs
+	async migrateRSVPIds(): Promise<void> {
+		try {
+			const rsvps = await this.getAllRSVPs();
+			const updates = [];
+
+			for (const rsvp of rsvps) {
+				// Check if RSVP ID is in old format (contains hyphens or is too long)
+				if (
+					!rsvp.rsvpId ||
+					rsvp.rsvpId.length !== 8 ||
+					rsvp.rsvpId.includes("-")
+				) {
+					const newRsvpId = generateRSVPId();
+					updates.push(this.updateRSVP(rsvp.id!, { rsvpId: newRsvpId }));
+					console.log(
+						`Updating RSVP ${rsvp.id} from ${rsvp.rsvpId} to ${newRsvpId}`
+					);
+				}
+			}
+
+			await Promise.all(updates);
+			console.log(`Updated ${updates.length} RSVP IDs to new format`);
+		} catch (error) {
+			console.error("Error migrating RSVP IDs:", error);
 			throw error;
 		}
 	},
