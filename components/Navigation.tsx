@@ -54,12 +54,12 @@ export default function Navigation() {
 							>
 								Aso Ebi
 							</button>
-							<button
-								onClick={() => scrollToSection("rsvp")}
+							<a
+								href="/rsvp"
 								className="text-charcoal hover:text-sage-green transition-colors duration-200 font-medium"
 							>
 								RSVP
-							</button>
+							</a>
 						</div>
 					</div>
 
@@ -157,12 +157,12 @@ export default function Navigation() {
 							>
 								Aso Ebi
 							</button>
-							<button
-								onClick={() => scrollToSection("rsvp")}
+							<a
+								href="/rsvp"
 								className="block px-3 py-2 text-charcoal hover:text-sage-green transition-colors duration-200 font-medium"
 							>
 								RSVP
-							</button>
+							</a>
 						</div>
 					</div>
 				)}

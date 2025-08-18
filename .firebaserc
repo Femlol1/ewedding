@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "etwedding-19ec2"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

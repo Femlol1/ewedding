@@ -2,21 +2,40 @@
 
 import { useEffect, useState } from "react";
 import { Order } from "../../types/order";
+import { RSVP, RSVPStats } from "../../types/rsvp";
+
+type AdminTab = "overview" | "orders" | "rsvp" | "payments";
 
 export default function AdminDashboard() {
+	const [activeTab, setActiveTab] = useState<AdminTab>("overview");
 	const [orders, setOrders] = useState<Order[]>([]);
+	const [rsvps, setRSVPs] = useState<RSVP[]>([]);
+	const [rsvpStats, setRSVPStats] = useState<RSVPStats | null>(null);
 	const [loading, setLoading] = useState(true);
-	const [filter, setFilter] = useState<
+	const [orderFilter, setOrderFilter] = useState<
 		"all" | "pending" | "confirmed" | "shipped" | "delivered"
+	>("all");
+	const [rsvpFilter, setRSVPFilter] = useState<
+		"all" | "attending" | "not-attending" | "maybe" | "responded" | "pending"
 	>("all");
 
 	useEffect(() => {
-		fetchOrders();
+		fetchData();
 	}, []);
+
+	const fetchData = async () => {
+		try {
+			setLoading(true);
+			await Promise.all([fetchOrders(), fetchRSVPs(), fetchRSVPStats()]);
+		} catch (error) {
+			console.error("Failed to fetch admin data:", error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	const fetchOrders = async () => {
 		try {
-			setLoading(true);
 			const response = await fetch("/api/orders?all=true");
 			if (response.ok) {
 				const { orders } = await response.json();
@@ -24,8 +43,30 @@ export default function AdminDashboard() {
 			}
 		} catch (error) {
 			console.error("Failed to fetch orders:", error);
-		} finally {
-			setLoading(false);
+		}
+	};
+
+	const fetchRSVPs = async () => {
+		try {
+			const response = await fetch("/api/rsvp");
+			if (response.ok) {
+				const { rsvps } = await response.json();
+				setRSVPs(rsvps);
+			}
+		} catch (error) {
+			console.error("Failed to fetch RSVPs:", error);
+		}
+	};
+
+	const fetchRSVPStats = async () => {
+		try {
+			const response = await fetch("/api/rsvp?stats=true");
+			if (response.ok) {
+				const { stats } = await response.json();
+				setRSVPStats(stats);
+			}
+		} catch (error) {
+			console.error("Failed to fetch RSVP stats:", error);
 		}
 	};
 
@@ -52,10 +93,60 @@ export default function AdminDashboard() {
 		}
 	};
 
+	const updateRSVPStatus = async (rsvpId: string, updates: Partial<RSVP>) => {
+		try {
+			const response = await fetch("/api/rsvp", {
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ id: rsvpId, ...updates }),
+			});
+
+			if (response.ok) {
+				setRSVPs(
+					rsvps.map((rsvp) =>
+						rsvp.id === rsvpId ? { ...rsvp, ...updates } : rsvp
+					)
+				);
+			}
+		} catch (error) {
+			console.error("Failed to update RSVP:", error);
+		}
+	};
+
+	const deleteRSVP = async (rsvpId: string) => {
+		if (!confirm("Are you sure you want to delete this RSVP?")) return;
+
+		try {
+			const response = await fetch(`/api/rsvp?id=${rsvpId}`, {
+				method: "DELETE",
+			});
+
+			if (response.ok) {
+				setRSVPs(rsvps.filter((rsvp) => rsvp.id !== rsvpId));
+				await fetchRSVPStats(); // Refresh stats
+			}
+		} catch (error) {
+			console.error("Failed to delete RSVP:", error);
+		}
+	};
+
 	const filteredOrders =
-		filter === "all"
+		orderFilter === "all"
 			? orders
-			: orders.filter((order) => order.orderStatus === filter);
+			: orders.filter((order) => order.orderStatus === orderFilter);
+
+	const filteredRSVPs = (() => {
+		switch (rsvpFilter) {
+			case "all":
+				return rsvps;
+			case "responded":
+				return rsvps.filter((rsvp) => rsvp.responded);
+			case "pending":
+				return rsvps.filter((rsvp) => !rsvp.responded);
+			default:
+				return rsvps.filter((rsvp) => rsvp.attendance === rsvpFilter);
+		}
+	})();
 
 	const formatPrice = (price: number) => {
 		return new Intl.NumberFormat("en-NG", {
@@ -99,12 +190,25 @@ export default function AdminDashboard() {
 		}
 	};
 
+	const getAttendanceColor = (attendance: RSVP["attendance"]) => {
+		switch (attendance) {
+			case "attending":
+				return "bg-green-100 text-green-800";
+			case "not-attending":
+				return "bg-red-100 text-red-800";
+			case "maybe":
+				return "bg-yellow-100 text-yellow-800";
+			default:
+				return "bg-gray-100 text-gray-800";
+		}
+	};
+
 	if (loading) {
 		return (
 			<div className="min-h-screen bg-gray-50 flex items-center justify-center">
 				<div className="text-center">
 					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-forest-green"></div>
-					<p className="mt-4 text-lg text-gray-600">Loading orders...</p>
+					<p className="mt-4 text-lg text-gray-600">Loading dashboard...</p>
 				</div>
 			</div>
 		);
@@ -115,187 +219,712 @@ export default function AdminDashboard() {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				{/* Header */}
 				<div className="mb-8">
-					<h1 className="text-3xl font-bold text-gray-900">Order Management</h1>
+					<h1 className="text-3xl font-bold text-gray-900">
+						Wedding Admin Dashboard
+					</h1>
 					<p className="mt-2 text-gray-600">
-						Manage Aso Ebi orders and customer information
+						Manage Aso Ebi orders, RSVP responses, and payments
 					</p>
 				</div>
 
-				{/* Stats */}
-				<div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-					<div className="bg-white p-6 rounded-lg shadow">
-						<h3 className="text-sm font-medium text-gray-500">Total Orders</h3>
-						<p className="text-2xl font-bold text-gray-900">{orders.length}</p>
-					</div>
-					<div className="bg-white p-6 rounded-lg shadow">
-						<h3 className="text-sm font-medium text-gray-500">
-							Pending Orders
-						</h3>
-						<p className="text-2xl font-bold text-yellow-600">
-							{orders.filter((o) => o.orderStatus === "pending").length}
-						</p>
-					</div>
-					<div className="bg-white p-6 rounded-lg shadow">
-						<h3 className="text-sm font-medium text-gray-500">
-							Completed Orders
-						</h3>
-						<p className="text-2xl font-bold text-green-600">
-							{orders.filter((o) => o.orderStatus === "delivered").length}
-						</p>
-					</div>
-					<div className="bg-white p-6 rounded-lg shadow">
-						<h3 className="text-sm font-medium text-gray-500">Total Revenue</h3>
-						<p className="text-2xl font-bold text-forest-green">
-							{formatPrice(
-								orders.reduce((sum, order) => sum + order.totalAmount, 0)
-							)}
-						</p>
-					</div>
+				{/* Navigation Tabs */}
+				<div className="mb-8">
+					<nav className="flex space-x-8">
+						{[
+							{ id: "overview", label: "Overview" },
+							{ id: "orders", label: "Orders" },
+							{ id: "rsvp", label: "RSVP Management" },
+							{ id: "payments", label: "Payment Tracking" },
+						].map((tab) => (
+							<button
+								key={tab.id}
+								onClick={() => setActiveTab(tab.id as AdminTab)}
+								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+									activeTab === tab.id
+										? "bg-forest-green text-white"
+										: "bg-white text-gray-700 hover:bg-gray-100"
+								}`}
+							>
+								{tab.label}
+							</button>
+						))}
+					</nav>
 				</div>
 
-				{/* Filters */}
-				<div className="bg-white p-4 rounded-lg shadow mb-6">
-					<div className="flex flex-wrap gap-2">
-						{["all", "pending", "confirmed", "shipped", "delivered"].map(
-							(status) => (
-								<button
-									key={status}
-									onClick={() => setFilter(status as any)}
-									className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-										filter === status
-											? "bg-forest-green text-white"
-											: "bg-gray-100 text-gray-700 hover:bg-gray-200"
-									}`}
-								>
-									{status.charAt(0).toUpperCase() + status.slice(1)}
-								</button>
-							)
-						)}
-					</div>
-				</div>
-
-				{/* Orders Table */}
-				<div className="bg-white shadow rounded-lg overflow-hidden">
-					<div className="overflow-x-auto">
-						<table className="min-w-full divide-y divide-gray-200">
-							<thead className="bg-gray-50">
-								<tr>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Order ID
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Customer
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Items
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Total
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Payment
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Status
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Date
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Actions
-									</th>
-								</tr>
-							</thead>
-							<tbody className="bg-white divide-y divide-gray-200">
-								{filteredOrders.map((order) => (
-									<tr key={order.id} className="hover:bg-gray-50">
-										<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-											{order.orderId}
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div>
-												<div className="text-sm font-medium text-gray-900">
-													{order.customerInfo.firstName}{" "}
-													{order.customerInfo.lastName}
-												</div>
-												<div className="text-sm text-gray-500">
-													{order.customerInfo.email}
-												</div>
-												<div className="text-sm text-gray-500">
-													{order.customerInfo.phone}
-												</div>
-											</div>
-										</td>
-										<td className="px-6 py-4">
-											<div className="text-sm text-gray-900">
-												{order.items.map((item, index) => (
-													<div key={index} className="mb-1">
-														{item.name} ({item.size}, {item.color}) ×{" "}
-														{item.quantity}
-													</div>
-												))}
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-											{formatPrice(order.totalAmount)}
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<span
-												className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getPaymentStatusColor(
-													order.paymentStatus
-												)}`}
-											>
-												{order.paymentStatus}
-											</span>
-											<div className="text-xs text-gray-500 mt-1">
-												{order.paymentMethod}
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<span
-												className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(
-													order.orderStatus
-												)}`}
-											>
-												{order.orderStatus}
-											</span>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-											{new Date(order.createdAt).toLocaleDateString()}
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-											<select
-												value={order.orderStatus}
-												onChange={(e) =>
-													updateOrderStatus(
-														order.id!,
-														e.target.value as Order["orderStatus"]
-													)
-												}
-												className="text-sm border-gray-300 rounded-md"
-											>
-												<option value="pending">Pending</option>
-												<option value="confirmed">Confirmed</option>
-												<option value="processing">Processing</option>
-												<option value="shipped">Shipped</option>
-												<option value="delivered">Delivered</option>
-												<option value="cancelled">Cancelled</option>
-											</select>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-
-					{filteredOrders.length === 0 && (
-						<div className="text-center py-12">
-							<p className="text-gray-500">
-								No orders found for the selected filter.
-							</p>
+				{/* Overview Tab */}
+				{activeTab === "overview" && (
+					<div className="space-y-8">
+						{/* Order Stats */}
+						<div>
+							<h2 className="text-xl font-bold text-gray-900 mb-4">
+								Order Statistics
+							</h2>
+							<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+								<div className="bg-white p-6 rounded-lg shadow">
+									<h3 className="text-sm font-medium text-gray-500">
+										Total Orders
+									</h3>
+									<p className="text-2xl font-bold text-gray-900">
+										{orders.length}
+									</p>
+								</div>
+								<div className="bg-white p-6 rounded-lg shadow">
+									<h3 className="text-sm font-medium text-gray-500">
+										Pending Orders
+									</h3>
+									<p className="text-2xl font-bold text-yellow-600">
+										{orders.filter((o) => o.orderStatus === "pending").length}
+									</p>
+								</div>
+								<div className="bg-white p-6 rounded-lg shadow">
+									<h3 className="text-sm font-medium text-gray-500">
+										Completed Orders
+									</h3>
+									<p className="text-2xl font-bold text-green-600">
+										{orders.filter((o) => o.orderStatus === "delivered").length}
+									</p>
+								</div>
+								<div className="bg-white p-6 rounded-lg shadow">
+									<h3 className="text-sm font-medium text-gray-500">
+										Total Revenue
+									</h3>
+									<p className="text-2xl font-bold text-forest-green">
+										{formatPrice(
+											orders.reduce((sum, order) => sum + order.totalAmount, 0)
+										)}
+									</p>
+								</div>
+							</div>
 						</div>
-					)}
-				</div>
+
+						{/* RSVP Stats */}
+						{rsvpStats && (
+							<div>
+								<h2 className="text-xl font-bold text-gray-900 mb-4">
+									RSVP Statistics
+								</h2>
+								<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+									<div className="bg-white p-6 rounded-lg shadow">
+										<h3 className="text-sm font-medium text-gray-500">
+											Total Invited
+										</h3>
+										<p className="text-2xl font-bold text-gray-900">
+											{rsvpStats.totalInvited}
+										</p>
+									</div>
+									<div className="bg-white p-6 rounded-lg shadow">
+										<h3 className="text-sm font-medium text-gray-500">
+											Responded
+										</h3>
+										<p className="text-2xl font-bold text-blue-600">
+											{rsvpStats.totalResponded}
+										</p>
+									</div>
+									<div className="bg-white p-6 rounded-lg shadow">
+										<h3 className="text-sm font-medium text-gray-500">
+											Attending
+										</h3>
+										<p className="text-2xl font-bold text-green-600">
+											{rsvpStats.attending}
+										</p>
+									</div>
+									<div className="bg-white p-6 rounded-lg shadow">
+										<h3 className="text-sm font-medium text-gray-500">
+											Total Guests
+										</h3>
+										<p className="text-2xl font-bold text-forest-green">
+											{rsvpStats.totalGuestCount}
+										</p>
+									</div>
+								</div>
+							</div>
+						)}
+
+						{/* Quick Actions */}
+						<div>
+							<h2 className="text-xl font-bold text-gray-900 mb-4">
+								Quick Actions
+							</h2>
+							<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+								<button
+									onClick={() => setActiveTab("orders")}
+									className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow text-left"
+								>
+									<h3 className="font-semibold text-gray-900">Manage Orders</h3>
+									<p className="text-sm text-gray-600 mt-2">
+										View and update order statuses
+									</p>
+								</button>
+								<button
+									onClick={() => setActiveTab("rsvp")}
+									className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow text-left"
+								>
+									<h3 className="font-semibold text-gray-900">
+										RSVP Management
+									</h3>
+									<p className="text-sm text-gray-600 mt-2">
+										Track guest responses and attendance
+									</p>
+								</button>
+								<button
+									onClick={() => setActiveTab("payments")}
+									className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow text-left"
+								>
+									<h3 className="font-semibold text-gray-900">
+										Payment Tracking
+									</h3>
+									<p className="text-sm text-gray-600 mt-2">
+										Monitor payment statuses and revenue
+									</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				)}
+
+				{/* Orders Tab */}
+				{activeTab === "orders" && (
+					<div className="space-y-6">
+						<div className="flex justify-between items-center">
+							<h2 className="text-xl font-bold text-gray-900">
+								Order Management
+							</h2>
+							<button
+								onClick={fetchOrders}
+								className="bg-forest-green text-white px-4 py-2 rounded-lg hover:bg-sage-green transition-colors"
+							>
+								Refresh Orders
+							</button>
+						</div>
+
+						{/* Order Filters */}
+						<div className="bg-white p-4 rounded-lg shadow">
+							<div className="flex flex-wrap gap-2">
+								{["all", "pending", "confirmed", "shipped", "delivered"].map(
+									(status) => (
+										<button
+											key={status}
+											onClick={() => setOrderFilter(status as any)}
+											className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+												orderFilter === status
+													? "bg-forest-green text-white"
+													: "bg-gray-100 text-gray-700 hover:bg-gray-200"
+											}`}
+										>
+											{status.charAt(0).toUpperCase() + status.slice(1)}
+										</button>
+									)
+								)}
+							</div>
+						</div>
+
+						{/* Orders Table */}
+						<div className="bg-white shadow rounded-lg overflow-hidden">
+							<div className="overflow-x-auto">
+								<table className="min-w-full divide-y divide-gray-200">
+									<thead className="bg-gray-50">
+										<tr>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Order ID
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Customer
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Items
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Total
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Payment
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Status
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Date
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Actions
+											</th>
+										</tr>
+									</thead>
+									<tbody className="bg-white divide-y divide-gray-200">
+										{filteredOrders.map((order) => (
+											<tr key={order.id} className="hover:bg-gray-50">
+												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+													{order.orderId}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div>
+														<div className="text-sm font-medium text-gray-900">
+															{order.customerInfo.firstName}{" "}
+															{order.customerInfo.lastName}
+														</div>
+														<div className="text-sm text-gray-500">
+															{order.customerInfo.email}
+														</div>
+														<div className="text-sm text-gray-500">
+															{order.customerInfo.phone}
+														</div>
+													</div>
+												</td>
+												<td className="px-6 py-4">
+													<div className="text-sm text-gray-900">
+														{order.items.map((item, index) => (
+															<div key={index} className="mb-1">
+																{item.name} ({item.size}, {item.color}) ×{" "}
+																{item.quantity}
+															</div>
+														))}
+													</div>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+													{formatPrice(order.totalAmount)}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<span
+														className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getPaymentStatusColor(
+															order.paymentStatus
+														)}`}
+													>
+														{order.paymentStatus}
+													</span>
+													<div className="text-xs text-gray-500 mt-1">
+														{order.paymentMethod}
+													</div>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<span
+														className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(
+															order.orderStatus
+														)}`}
+													>
+														{order.orderStatus}
+													</span>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+													{new Date(order.createdAt).toLocaleDateString()}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+													<select
+														value={order.orderStatus}
+														onChange={(e) =>
+															updateOrderStatus(
+																order.id!,
+																e.target.value as Order["orderStatus"]
+															)
+														}
+														className="text-sm border-gray-300 rounded-md"
+													>
+														<option value="pending">Pending</option>
+														<option value="confirmed">Confirmed</option>
+														<option value="processing">Processing</option>
+														<option value="shipped">Shipped</option>
+														<option value="delivered">Delivered</option>
+														<option value="cancelled">Cancelled</option>
+													</select>
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+
+							{filteredOrders.length === 0 && (
+								<div className="text-center py-12">
+									<p className="text-gray-500">
+										No orders found for the selected filter.
+									</p>
+								</div>
+							)}
+						</div>
+					</div>
+				)}
+
+				{/* RSVP Tab */}
+				{activeTab === "rsvp" && (
+					<div className="space-y-6">
+						<div className="flex justify-between items-center">
+							<h2 className="text-xl font-bold text-gray-900">
+								RSVP Management
+							</h2>
+							<button
+								onClick={fetchRSVPs}
+								className="bg-forest-green text-white px-4 py-2 rounded-lg hover:bg-sage-green transition-colors"
+							>
+								Refresh RSVPs
+							</button>
+						</div>
+
+						{/* RSVP Stats Summary */}
+						{rsvpStats && (
+							<div className="bg-white p-6 rounded-lg shadow">
+								<h3 className="text-lg font-semibold text-gray-900 mb-4">
+									Response Summary
+								</h3>
+								<div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+									<div>
+										<p className="text-2xl font-bold text-green-600">
+											{rsvpStats.attending}
+										</p>
+										<p className="text-sm text-gray-600">Attending</p>
+									</div>
+									<div>
+										<p className="text-2xl font-bold text-red-600">
+											{rsvpStats.notAttending}
+										</p>
+										<p className="text-sm text-gray-600">Not Attending</p>
+									</div>
+									<div>
+										<p className="text-2xl font-bold text-yellow-600">
+											{rsvpStats.maybe}
+										</p>
+										<p className="text-sm text-gray-600">Maybe</p>
+									</div>
+									<div>
+										<p className="text-2xl font-bold text-blue-600">
+											{rsvpStats.both}
+										</p>
+										<p className="text-sm text-gray-600">Both Events</p>
+									</div>
+									<div>
+										<p className="text-2xl font-bold text-forest-green">
+											{rsvpStats.totalGuestCount}
+										</p>
+										<p className="text-sm text-gray-600">Total Guests</p>
+									</div>
+								</div>
+							</div>
+						)}
+
+						{/* RSVP Filters */}
+						<div className="bg-white p-4 rounded-lg shadow">
+							<div className="flex flex-wrap gap-2">
+								{[
+									"all",
+									"attending",
+									"not-attending",
+									"maybe",
+									"responded",
+									"pending",
+								].map((status) => (
+									<button
+										key={status}
+										onClick={() => setRSVPFilter(status as any)}
+										className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+											rsvpFilter === status
+												? "bg-forest-green text-white"
+												: "bg-gray-100 text-gray-700 hover:bg-gray-200"
+										}`}
+									>
+										{status.charAt(0).toUpperCase() +
+											status.slice(1).replace("-", " ")}
+									</button>
+								))}
+							</div>
+						</div>
+
+						{/* RSVP Table */}
+						<div className="bg-white shadow rounded-lg overflow-hidden">
+							<div className="overflow-x-auto">
+								<table className="min-w-full divide-y divide-gray-200">
+									<thead className="bg-gray-50">
+										<tr>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Guest Name
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Contact
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Attendance
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Event Type
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Guests
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Responded
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Actions
+											</th>
+										</tr>
+									</thead>
+									<tbody className="bg-white divide-y divide-gray-200">
+										{filteredRSVPs.map((rsvp) => (
+											<tr key={rsvp.id} className="hover:bg-gray-50">
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="text-sm font-medium text-gray-900">
+														{rsvp.primaryGuest.name}
+													</div>
+													{rsvp.primaryGuest.dietaryRestrictions && (
+														<div className="text-xs text-gray-500">
+															Dietary: {rsvp.primaryGuest.dietaryRestrictions}
+														</div>
+													)}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="text-sm text-gray-900">
+														{rsvp.primaryGuest.email}
+													</div>
+													<div className="text-sm text-gray-500">
+														{rsvp.primaryGuest.phone}
+													</div>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<span
+														className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getAttendanceColor(
+															rsvp.attendance
+														)}`}
+													>
+														{rsvp.attendance.replace("-", " ")}
+													</span>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+													{rsvp.eventType}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+													{rsvp.numberOfGuests}
+													{rsvp.guests.length > 1 && (
+														<div className="text-xs">
+															{rsvp.guests.slice(1).map((guest, idx) => (
+																<div key={idx}>{guest.name}</div>
+															))}
+														</div>
+													)}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<span
+														className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+															rsvp.responded
+																? "bg-green-100 text-green-800"
+																: "bg-red-100 text-red-800"
+														}`}
+													>
+														{rsvp.responded ? "Yes" : "Pending"}
+													</span>
+													{rsvp.confirmedAt && (
+														<div className="text-xs text-gray-500 mt-1">
+															{new Date(rsvp.confirmedAt).toLocaleDateString()}
+														</div>
+													)}
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+													<select
+														value={rsvp.attendance}
+														onChange={(e) =>
+															updateRSVPStatus(rsvp.id!, {
+																attendance: e.target
+																	.value as RSVP["attendance"],
+															})
+														}
+														className="text-xs border-gray-300 rounded-md"
+													>
+														<option value="attending">Attending</option>
+														<option value="not-attending">Not Attending</option>
+														<option value="maybe">Maybe</option>
+													</select>
+													<button
+														onClick={() => deleteRSVP(rsvp.id!)}
+														className="text-red-600 hover:text-red-800 text-xs"
+													>
+														Delete
+													</button>
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+
+							{filteredRSVPs.length === 0 && (
+								<div className="text-center py-12">
+									<p className="text-gray-500">
+										No RSVPs found for the selected filter.
+									</p>
+								</div>
+							)}
+						</div>
+					</div>
+				)}
+
+				{/* Payments Tab */}
+				{activeTab === "payments" && (
+					<div className="space-y-6">
+						<h2 className="text-xl font-bold text-gray-900">
+							Payment Tracking
+						</h2>
+
+						{/* Payment Stats */}
+						<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+							<div className="bg-white p-6 rounded-lg shadow">
+								<h3 className="text-sm font-medium text-gray-500">
+									Total Revenue
+								</h3>
+								<p className="text-2xl font-bold text-forest-green">
+									{formatPrice(
+										orders.reduce((sum, order) => sum + order.totalAmount, 0)
+									)}
+								</p>
+							</div>
+							<div className="bg-white p-6 rounded-lg shadow">
+								<h3 className="text-sm font-medium text-gray-500">
+									Completed Payments
+								</h3>
+								<p className="text-2xl font-bold text-green-600">
+									{formatPrice(
+										orders
+											.filter((o) => o.paymentStatus === "completed")
+											.reduce((sum, order) => sum + order.totalAmount, 0)
+									)}
+								</p>
+							</div>
+							<div className="bg-white p-6 rounded-lg shadow">
+								<h3 className="text-sm font-medium text-gray-500">
+									Pending Payments
+								</h3>
+								<p className="text-2xl font-bold text-yellow-600">
+									{formatPrice(
+										orders
+											.filter((o) => o.paymentStatus === "pending")
+											.reduce((sum, order) => sum + order.totalAmount, 0)
+									)}
+								</p>
+							</div>
+							<div className="bg-white p-6 rounded-lg shadow">
+								<h3 className="text-sm font-medium text-gray-500">
+									Failed Payments
+								</h3>
+								<p className="text-2xl font-bold text-red-600">
+									{formatPrice(
+										orders
+											.filter((o) => o.paymentStatus === "failed")
+											.reduce((sum, order) => sum + order.totalAmount, 0)
+									)}
+								</p>
+							</div>
+						</div>
+
+						{/* Payment Methods Breakdown */}
+						<div className="bg-white p-6 rounded-lg shadow">
+							<h3 className="text-lg font-semibold text-gray-900 mb-4">
+								Payment Methods
+							</h3>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								<div className="text-center">
+									<p className="text-2xl font-bold text-blue-600">
+										{orders.filter((o) => o.paymentMethod === "stripe").length}
+									</p>
+									<p className="text-sm text-gray-600">Stripe Payments</p>
+									<p className="text-lg font-semibold text-gray-900 mt-2">
+										{formatPrice(
+											orders
+												.filter((o) => o.paymentMethod === "stripe")
+												.reduce((sum, order) => sum + order.totalAmount, 0)
+										)}
+									</p>
+								</div>
+								<div className="text-center">
+									<p className="text-2xl font-bold text-yellow-600">
+										{orders.filter((o) => o.paymentMethod === "paypal").length}
+									</p>
+									<p className="text-sm text-gray-600">PayPal Payments</p>
+									<p className="text-lg font-semibold text-gray-900 mt-2">
+										{formatPrice(
+											orders
+												.filter((o) => o.paymentMethod === "paypal")
+												.reduce((sum, order) => sum + order.totalAmount, 0)
+										)}
+									</p>
+								</div>
+							</div>
+						</div>
+
+						{/* Recent Payments */}
+						<div className="bg-white shadow rounded-lg overflow-hidden">
+							<div className="px-6 py-4 border-b border-gray-200">
+								<h3 className="text-lg font-semibold text-gray-900">
+									Recent Payments
+								</h3>
+							</div>
+							<div className="overflow-x-auto">
+								<table className="min-w-full divide-y divide-gray-200">
+									<thead className="bg-gray-50">
+										<tr>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Order ID
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Customer
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Amount
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Method
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Status
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Date
+											</th>
+											<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												Payment ID
+											</th>
+										</tr>
+									</thead>
+									<tbody className="bg-white divide-y divide-gray-200">
+										{orders
+											.sort(
+												(a, b) =>
+													new Date(b.createdAt).getTime() -
+													new Date(a.createdAt).getTime()
+											)
+											.slice(0, 10)
+											.map((order) => (
+												<tr key={order.id} className="hover:bg-gray-50">
+													<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+														{order.orderId}
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+														{order.customerInfo.firstName}{" "}
+														{order.customerInfo.lastName}
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+														{formatPrice(order.totalAmount)}
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+														{order.paymentMethod.toUpperCase()}
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<span
+															className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getPaymentStatusColor(
+																order.paymentStatus
+															)}`}
+														>
+															{order.paymentStatus}
+														</span>
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+														{new Date(order.createdAt).toLocaleDateString()}
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono">
+														{order.paymentId || "N/A"}
+													</td>
+												</tr>
+											))}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);
