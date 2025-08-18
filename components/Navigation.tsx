@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "../contexts/CartContext";
 
 export default function Navigation() {
 	const [isOpen, setIsOpen] = useState(false);
+	const { state, toggleCart } = useCart();
 
 	const scrollToSection = (sectionId: string) => {
 		const element = document.getElementById(sectionId);
@@ -47,6 +49,12 @@ export default function Navigation() {
 								Gallery
 							</button>
 							<button
+								onClick={() => scrollToSection("aso-ebi")}
+								className="text-charcoal hover:text-sage-green transition-colors duration-200 font-medium"
+							>
+								Aso Ebi
+							</button>
+							<button
 								onClick={() => scrollToSection("rsvp")}
 								className="text-charcoal hover:text-sage-green transition-colors duration-200 font-medium"
 							>
@@ -55,35 +63,63 @@ export default function Navigation() {
 						</div>
 					</div>
 
-					{/* Mobile menu button */}
-					<div className="md:hidden">
+					{/* Cart and Mobile menu */}
+					<div className="flex items-center space-x-4">
+						{/* Cart Icon */}
 						<button
-							onClick={() => setIsOpen(!isOpen)}
-							className="text-charcoal hover:text-sage-green focus:outline-none focus:text-sage-green"
+							onClick={toggleCart}
+							className="relative text-charcoal hover:text-sage-green transition-colors duration-200 p-2"
 						>
 							<svg
 								className="h-6 w-6"
 								fill="none"
-								viewBox="0 0 24 24"
 								stroke="currentColor"
+								viewBox="0 0 24 24"
 							>
-								{isOpen ? (
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M6 18L18 6M6 6l12 12"
-									/>
-								) : (
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M4 6h16M4 12h16M4 18h16"
-									/>
-								)}
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.8 5.2a2 2 0 01-1.9 1.8H3.2a2 2 0 01-2-1.8L1 7h2m4 6v6a2 2 0 002 2h4a2 2 0 002-2v-6m-6 0V9a2 2 0 012-2h2a2 2 0 012 2v4"
+								/>
 							</svg>
+							{state.totalItems > 0 && (
+								<span className="absolute -top-1 -right-1 bg-champagne-gold text-forest-green text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+									{state.totalItems}
+								</span>
+							)}
 						</button>
+
+						{/* Mobile menu button */}
+						<div className="md:hidden">
+							<button
+								onClick={() => setIsOpen(!isOpen)}
+								className="text-charcoal hover:text-sage-green focus:outline-none focus:text-sage-green"
+							>
+								<svg
+									className="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									{isOpen ? (
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M6 18L18 6M6 6l12 12"
+										/>
+									) : (
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M4 6h16M4 12h16M4 18h16"
+										/>
+									)}
+								</svg>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -114,6 +150,12 @@ export default function Navigation() {
 								className="block px-3 py-2 text-charcoal hover:text-sage-green transition-colors duration-200 font-medium"
 							>
 								Gallery
+							</button>
+							<button
+								onClick={() => scrollToSection("aso-ebi")}
+								className="block px-3 py-2 text-charcoal hover:text-sage-green transition-colors duration-200 font-medium"
+							>
+								Aso Ebi
 							</button>
 							<button
 								onClick={() => scrollToSection("rsvp")}
