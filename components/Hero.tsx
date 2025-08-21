@@ -9,8 +9,8 @@ export default function Hero() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<img
-					src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop&crop=center"
-					alt="Wedding background"
+					src="/photos/1 (1).JPG"
+					alt="Emmanuel & Temitope Wedding"
 					className="w-full h-full object-cover"
 				/>
 				<div className="absolute inset-0 bg-forest-green/20"></div>
