@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large video files - use Uploadthing for hosting
+public/videos/*.MOV
+public/videos/*.mov
+public/videos/*.mp4
+public/videos/*.MP4
+*.MOV
+*.mov
