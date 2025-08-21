@@ -111,11 +111,11 @@ export default function AsoebiOrdersAdmin() {
 	const getStatusColor = (status: string) => {
 		switch (status) {
 			case "pending":
-				return "bg-yellow-500";
+				return "bg-nude-400";
 			case "confirmed":
 				return "bg-blue-500";
 			case "processing":
-				return "bg-purple-500";
+				return "bg-blush-500";
 			case "delivered":
 				return "bg-green-500";
 			case "cancelled":
@@ -128,7 +128,7 @@ export default function AsoebiOrdersAdmin() {
 	const getPaymentStatusColor = (status: string) => {
 		switch (status) {
 			case "pending":
-				return "bg-yellow-500";
+				return "bg-nude-400";
 			case "paid":
 				return "bg-green-500";
 			case "failed":
@@ -201,7 +201,7 @@ export default function AsoebiOrdersAdmin() {
 				<Card>
 					<CardContent className="p-6">
 						<div className="flex items-center">
-							<Check className="h-8 w-8 text-purple-600" />
+							<Check className="h-8 w-8 text-blush-500" />
 							<div className="ml-4">
 								<p className="text-sm font-medium text-gray-600">Confirmed</p>
 								<p className="text-2xl font-bold">
@@ -215,7 +215,7 @@ export default function AsoebiOrdersAdmin() {
 				<Card>
 					<CardContent className="p-6">
 						<div className="flex items-center">
-							<Calendar className="h-8 w-8 text-yellow-600" />
+							<Calendar className="h-8 w-8 text-nude-600" />
 							<div className="ml-4">
 								<p className="text-sm font-medium text-gray-600">Pending</p>
 								<p className="text-2xl font-bold">
@@ -322,7 +322,7 @@ export default function AsoebiOrdersAdmin() {
 										<p className="text-sm">Items: {order.items.length}</p>
 										<p className="text-sm">
 											Total:{" "}
-											<span className="font-semibold text-purple-600">
+											<span className="font-semibold text-blush-500">
 												{formatPrice(order.totalAmount)}
 											</span>
 										</p>
@@ -397,7 +397,7 @@ export default function AsoebiOrdersAdmin() {
 									{order.status === "confirmed" && (
 										<Button
 											size="sm"
-											className="bg-purple-600 hover:bg-purple-700"
+											className="bg-blush-500 hover:bg-blush-600"
 											onClick={() => updateOrderStatus(order.id, "processing")}
 										>
 											Start Processing

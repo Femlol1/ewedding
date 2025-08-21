@@ -186,7 +186,7 @@ export default function CheckoutModal({
 								))}
 								<div className="flex justify-between items-center pt-4 text-lg font-bold">
 									<span>Total:</span>
-									<span className="text-purple-600">
+									<span className="text-blush-500">
 										{formatPrice(totalAmount)}
 									</span>
 								</div>
@@ -322,7 +322,7 @@ export default function CheckoutModal({
 								</Button>
 								<Button
 									type="submit"
-									className="flex-1 bg-purple-600 hover:bg-purple-700"
+									className="flex-1 bg-blush-500 hover:bg-blush-600"
 									disabled={loading}
 								>
 									{loading ? "Placing Order..." : "Place Order"}

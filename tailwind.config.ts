@@ -25,49 +25,85 @@ module.exports = {
 		extend: {
 			colors: {
 				primary: {
-					DEFAULT: "#FFD700", // Gold color
-					"50": "#FFF8DC",
-					"100": "#FFF1B8",
-					"200": "#FFE38F",
-					"300": "#FFD700",
-					"400": "#E6C200",
-					"500": "#CCAD00",
-					"600": "#B39800",
-					"700": "#998300",
-					"800": "#806D00",
-					"900": "#665800",
+					DEFAULT: "#D4B4A6", // Soft nude/beige
+					"50": "#F8F4F2",
+					"100": "#F1E8E2",
+					"200": "#E8D6CB",
+					"300": "#DFC4B4",
+					"400": "#D4B4A6",
+					"500": "#C8A092",
+					"600": "#BC8C7E",
+					"700": "#A97665",
+					"800": "#8B5D4A",
+					"900": "#6D4A39",
 					foreground: "#FFFFFF", // White foreground color
 				},
 				secondary: {
-					DEFAULT: "#FFFFFF", // White color
-					foreground: "#FFD700", // Gold foreground color
+					DEFAULT: "#F5F0EC", // Very light cream
+					foreground: "#6D4A39", // Dark nude foreground color
 				},
 				accent: {
-					DEFAULT: "#FFD700", // Gold accent color
-					foreground: "#FFFFFF", // White foreground color
+					DEFAULT: "#E8D6CB", // Light nude accent color
+					foreground: "#6D4A39", // Dark nude foreground color
+				},
+				nude: {
+					"50": "#FAF8F6",
+					"100": "#F5F0EC",
+					"200": "#EDE2D9",
+					"300": "#E8D6CB",
+					"400": "#D4B4A6",
+					"500": "#C8A092",
+					"600": "#BC8C7E",
+					"700": "#A97665",
+					"800": "#8B5D4A",
+					"900": "#6D4A39",
+				},
+				blush: {
+					"50": "#FDF8F7",
+					"100": "#FBEEE9",
+					"200": "#F7DDD3",
+					"300": "#F3CCBD",
+					"400": "#EFBBA7",
+					"500": "#EBA991",
+					"600": "#E7987B",
+					"700": "#E38765",
+					"800": "#DF764F",
+					"900": "#DB6539",
+				},
+				cream: {
+					"50": "#FEFCFA",
+					"100": "#FDF9F5",
+					"200": "#FBF3EB",
+					"300": "#F9EDE1",
+					"400": "#F7E7D7",
+					"500": "#F5E1CD",
+					"600": "#F3DBC3",
+					"700": "#F1D5B9",
+					"800": "#EFCFAF",
+					"900": "#EDC9A5",
 				},
 				dark: {
-					DEFAULT: "#1A1A1A",
-					"50": "#333333",
-					"100": "#4D4D4D",
-					"200": "#666666",
-					"300": "#808080",
-					"400": "#999999",
-					"500": "#B3B3B3",
-					"600": "#CCCCCC",
-					"700": "#E6E6E6",
-					"800": "#F2F2F2",
-					"900": "#FFFFFF",
+					DEFAULT: "#6D4A39",
+					"50": "#F5F0EC",
+					"100": "#EDE2D9",
+					"200": "#D4B4A6",
+					"300": "#C8A092",
+					"400": "#BC8C7E",
+					"500": "#A97665",
+					"600": "#8B5D4A",
+					"700": "#6D4A39",
+					"800": "#5A3B2A",
+					"900": "#472C1B",
 				},
 				coral: {
-					500: "#15BF59",
+					500: "#E8A07C", // Soft coral instead of bright green
 				},
 				grey: {
-					600: "#545454",
-					500: "#757575",
-					400: "#AFAFAF",
+					600: "#8B7D76",
+					500: "#A59B94",
+					400: "#BFB5B0",
 					100: "#F2EFEF",
-					50: "#F6F6F6",
+					50: "#F8F6F5",
 				},
 				black: "#000000",
 				white: "#FFFFFF",
@@ -76,12 +112,12 @@ module.exports = {
 				ring: "hsl(var(--ring))",
 				foreground: "hsl(var(--foreground))",
 				destructive: {
-					DEFAULT: "#FF0000", // Red color for destructive actions
+					DEFAULT: "#D17A72", // Soft muted red for destructive actions
 					foreground: "#FFFFFF", // White foreground color
 				},
 				muted: {
-					DEFAULT: "#CCCCCC", // Muted grey color
-					foreground: "#333333", // Dark grey foreground color
+					DEFAULT: "#F5F0EC", // Soft nude muted color
+					foreground: "#8B7D76", // Muted grey foreground color
 				},
 				popover: {
 					DEFAULT: "hsl(var(--popover))",
@@ -141,16 +177,18 @@ module.exports = {
 				"marquee-vertical": "marquee-vertical var(--duration) linear infinite",
 			},
 			boxShadow: {
-				"neon-gold":
-					"0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700",
-				"neon-white":
-					"0 0 5px #FFFFFF, 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 40px #FFFFFF",
+				"neon-nude":
+					"0 0 5px #D4B4A6, 0 0 10px #D4B4A6, 0 0 20px #D4B4A6, 0 0 40px #D4B4A6",
+				"neon-cream":
+					"0 0 5px #F5E1CD, 0 0 10px #F5E1CD, 0 0 20px #F5E1CD, 0 0 40px #F5E1CD",
+				"soft-glow":
+					"0 4px 20px rgba(212, 180, 166, 0.3), 0 2px 10px rgba(212, 180, 166, 0.2)",
 			},
 			textShadow: {
-				"neon-gold":
-					"0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700",
-				"neon-white":
-					"0 0 5px #FFFFFF, 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 40px #FFFFFF",
+				"neon-nude":
+					"0 0 5px #D4B4A6, 0 0 10px #D4B4A6, 0 0 20px #D4B4A6, 0 0 40px #D4B4A6",
+				"neon-cream":
+					"0 0 5px #F5E1CD, 0 0 10px #F5E1CD, 0 0 20px #F5E1CD, 0 0 40px #F5E1CD",
 			},
 		},
 	},
@@ -158,13 +196,16 @@ module.exports = {
 		require("tailwindcss-animate"),
 		function ({ addUtilities }: PluginAPI) {
 			const newUtilities = {
-				".text-shadow-neon-gold": {
+				".text-shadow-neon-nude": {
 					textShadow:
-						"0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700",
+						"0 0 5px #D4B4A6, 0 0 10px #D4B4A6, 0 0 20px #D4B4A6, 0 0 40px #D4B4A6",
 				},
-				".text-shadow-neon-white": {
+				".text-shadow-neon-cream": {
 					textShadow:
-						"0 0 5px #FFFFFF, 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 40px #FFFFFF",
+						"0 0 5px #F5E1CD, 0 0 10px #F5E1CD, 0 0 20px #F5E1CD, 0 0 40px #F5E1CD",
+				},
+				".text-shadow-soft": {
+					textShadow: "0 2px 4px rgba(212, 180, 166, 0.3)",
 				},
 			};
 

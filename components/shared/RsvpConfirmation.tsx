@@ -108,7 +108,7 @@ const RsvpConfirmation: React.FC<RsvpConfirmationProps> = ({ rsvp }) => {
 							style={{ objectFit: "contain" }}
 						/>
 					</div>
-					<h2 className="text-2xl font-bold text-yellow-600 mb-2">
+					<h2 className="text-2xl font-bold text-nude-600 mb-2">
 						Your RSVP is Confirmed!
 					</h2>
 					<p className="text-base mb-2">

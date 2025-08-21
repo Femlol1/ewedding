@@ -176,7 +176,7 @@ export default function StatsPage() {
 	};
 
 	const userTypeStats = [
-		{ label: "VIP Users", value: stats.vipUser, color: "bg-purple-500" },
+		{ label: "VIP Users", value: stats.vipUser, color: "bg-blush-500" },
 		{ label: "Temitopes Guests", value: stats.opesGuest, color: "bg-blue-500" },
 		{
 			label: "Tobilobas Guests",
@@ -186,7 +186,7 @@ export default function StatsPage() {
 		{
 			label: "Temitopes Family",
 			value: stats.osibemekunFamilyGuest,
-			color: "bg-yellow-500",
+			color: "bg-nude-500",
 		},
 		{
 			label: "Tobilobas Family",
@@ -218,7 +218,7 @@ export default function StatsPage() {
 				</div>
 				<div className="bg-white p-6 rounded-lg shadow-sm border">
 					<h2 className="text-lg font-semibold text-gray-700">Check-in Rate</h2>
-					<p className="text-3xl font-bold text-purple-600">
+					<p className="text-3xl font-bold text-blush-500">
 						{stats.totalRSVPs > 0
 							? Math.round((stats.checkedIn / stats.totalRSVPs) * 100)
 							: 0}

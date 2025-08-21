@@ -269,7 +269,7 @@ export default function AsoebiPage() {
 						<div className="flex justify-center mb-8">
 							<div className="relative">
 								<Button
-									className="bg-purple-600 hover:bg-purple-700 px-6 py-3 mr-2"
+									className="bg-blush-500 hover:bg-blush-600 px-6 py-3 mr-2"
 									onClick={() => setShowCartDetails(!showCartDetails)}
 								>
 									<ShoppingCart className="w-5 h-5 mr-2" />
@@ -359,7 +359,7 @@ export default function AsoebiPage() {
 												Total: {formatPrice(getTotalCartValue())}
 											</span>
 											<Button
-												className="bg-purple-600 hover:bg-purple-700"
+												className="bg-blush-500 hover:bg-blush-600"
 												onClick={() => {
 													setShowCartDetails(false);
 													setShowCheckout(true);
@@ -384,7 +384,7 @@ export default function AsoebiPage() {
 									title="Navy Blue"
 								></div>
 								<div
-									className="w-8 h-8 rounded-full bg-yellow-500 border-2 border-white shadow-md"
+									className="w-8 h-8 rounded-full bg-nude-400 border-2 border-white shadow-md"
 									title="Gold"
 								></div>
 								<div
@@ -404,8 +404,8 @@ export default function AsoebiPage() {
 									onClick={() => setSelectedCategory(category as any)}
 									className={`px-6 py-2 rounded-md font-medium transition-all ${
 										selectedCategory === category
-											? "bg-purple-600 text-white shadow-md"
-											: "text-gray-600 hover:text-purple-600"
+											? "bg-blush-500 text-white shadow-md"
+											: "text-gray-600 hover:text-blush-500"
 									}`}
 								>
 									{category === "all"
@@ -436,7 +436,7 @@ export default function AsoebiPage() {
 														: "👶"}
 												</span>
 											</div>
-											<div className="text-sm text-purple-600 font-medium">
+											<div className="text-sm text-blush-500 font-medium">
 												{item.category === "women"
 													? "Women's Collection"
 													: item.category === "men"
@@ -485,7 +485,7 @@ export default function AsoebiPage() {
 														key={i}
 														className={`w-4 h-4 ${
 															i < Math.floor(item.rating)
-																? "fill-yellow-400 text-yellow-400"
+																? "fill-nude-400 text-nude-400"
 																: "text-gray-300"
 														}`}
 													/>
@@ -502,7 +502,7 @@ export default function AsoebiPage() {
 
 									{/* Price */}
 									<div className="flex items-center gap-2 mb-4">
-										<span className="text-2xl font-bold text-purple-600">
+										<span className="text-2xl font-bold text-blush-500">
 											{formatPrice(item.price)}
 										</span>
 										{item.originalPrice && (
@@ -552,7 +552,7 @@ export default function AsoebiPage() {
 									<Button
 										onClick={() => addToCart(item)}
 										disabled={!item.inStock}
-										className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400"
+										className="w-full bg-blush-500 hover:bg-blush-600 disabled:bg-gray-400"
 									>
 										{item.inStock ? (
 											<>
@@ -576,7 +576,7 @@ export default function AsoebiPage() {
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 							<div className="text-center">
 								<div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-									<Truck className="w-8 h-8 text-purple-600" />
+									<Truck className="w-8 h-8 text-blush-500" />
 								</div>
 								<h3 className="text-xl font-semibold mb-2">Free Delivery</h3>
 								<p className="text-gray-600">
@@ -585,7 +585,7 @@ export default function AsoebiPage() {
 							</div>
 							<div className="text-center">
 								<div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-									<Shield className="w-8 h-8 text-purple-600" />
+									<Shield className="w-8 h-8 text-blush-500" />
 								</div>
 								<h3 className="text-xl font-semibold mb-2">
 									Quality Guarantee
@@ -596,7 +596,7 @@ export default function AsoebiPage() {
 							</div>
 							<div className="text-center">
 								<div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-									<RefreshCw className="w-8 h-8 text-purple-600" />
+									<RefreshCw className="w-8 h-8 text-blush-500" />
 								</div>
 								<h3 className="text-xl font-semibold mb-2">Easy Returns</h3>
 								<p className="text-gray-600">
@@ -618,19 +618,19 @@ export default function AsoebiPage() {
 						<div className="flex flex-col md:flex-row gap-4 justify-center">
 							<Button
 								variant="secondary"
-								className="bg-white text-purple-600 hover:bg-gray-100"
+								className="bg-white text-blush-500 hover:bg-cream-100"
 							>
 								📞 Call Us: +234 123 456 7890
 							</Button>
 							<Button
 								variant="secondary"
-								className="bg-white text-purple-600 hover:bg-gray-100"
+								className="bg-white text-blush-500 hover:bg-cream-100"
 							>
 								💬 WhatsApp: +234 987 654 3210
 							</Button>
 							<Button
 								variant="secondary"
-								className="bg-white text-purple-600 hover:bg-gray-100"
+								className="bg-white text-blush-500 hover:bg-cream-100"
 							>
 								✉️ Email: asoebi@ourwedding.com
 							</Button>

@@ -396,7 +396,7 @@ export default function CheckInPage() {
 											className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
 												rsvp.checkedIn
 													? "bg-green-100 text-green-800"
-													: "bg-yellow-100 text-yellow-800"
+													: "bg-nude-100 text-nude-800"
 											}`}
 										>
 											{rsvp.checkedIn ? "Checked In" : "Not Checked In"}
@@ -413,7 +413,7 @@ export default function CheckInPage() {
 										) : (
 											<button
 												onClick={() => handleCheckOut(rsvp.id)}
-												className="text-yellow-600 hover:text-yellow-900 bg-yellow-100 hover:bg-yellow-200 px-3 py-1 rounded"
+												className="text-nude-600 hover:text-nude-900 bg-nude-100 hover:bg-nude-200 px-3 py-1 rounded"
 											>
 												Check Out
 											</button>
