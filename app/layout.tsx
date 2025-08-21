@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import React from "react";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const poppins = Poppins({
 	subsets: ["latin"],
-	variable: "--font-inter",
+	weight: ["400", "500", "600", "700"],
+	variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
-	title: "Emmanuel's Wedding - December 15, 2026",
-	description:
-		"Join us for our special day - Emmanuel's Wedding on December 15, 2026",
+	title: "Temitope and Tobiloba's wedding ",
+	description: "A wonderful day for awesome people",
+	icons: {
+		icon: "/assets/logo.png",
+	},
 };
 
 export default function RootLayout({
@@ -20,9 +22,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning={true}>
-			<body className={`${inter.variable} font-sans antialiased`}>
-				{children}
+		<html lang="en">
+			<body className={poppins.variable}>
+				<main>{children}</main>
 			</body>
 		</html>
 	);

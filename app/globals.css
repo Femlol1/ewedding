@@ -1,111 +1,368 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
+@layer base {
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
 
-	/* Iranti-Inspired Wedding Colors - Elegant and Sophisticated */
-	--forest-green: #1a4741;
-	--sage-green: #2d5a52;
-	--emerald: #3a6b5c;
-	--cream: #faf8f5;
-	--warm-beige: #f4f1ec;
-	--champagne-gold: #d4af7a;
-	--bronze: #b8956a;
-	--warm-white: #fefcfa;
-	--charcoal: #2c2c2c;
-	--soft-gray: #6b7280;
-	--light-sage: #e8f0ed;
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 84% 4.9%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
+
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
+
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 222.2 84% 4.9%;
+
+		--radius: 0.5rem;
+	}
+
+	.dark {
+		--background: 222.2 84% 4.9%;
+		--foreground: 210 40% 98%;
+
+		--card: 222.2 84% 4.9%;
+		--card-foreground: 210 40% 98%;
+
+		--popover: 222.2 84% 4.9%;
+		--popover-foreground: 210 40% 98%;
+
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 212.7 26.8% 83.9%;
+	}
+}
+
+* {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	scroll-behavior: smooth;
 }
 
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: "Inter", "Georgia", "Times New Roman", serif;
-	scroll-behavior: smooth;
-	line-height: 1.6;
+	font-family: var(--font-poppins);
 }
 
-/* Custom utility classes for Iranti-inspired wedding design */
-.shadow-soft {
-	box-shadow: 0 4px 25px -4px rgba(26, 71, 65, 0.12),
-		0 2px 10px -2px rgba(26, 71, 65, 0.06);
+.filter-grey {
+	filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%)
+		hue-rotate(32deg) brightness(98%) contrast(92%);
 }
 
-.shadow-gentle {
-	box-shadow: 0 2px 15px -3px rgba(26, 71, 65, 0.08),
-		0 1px 6px -2px rgba(26, 71, 65, 0.04);
+/* ========================================== TAILWIND STYLES */
+@layer utilities {
+	.wrapper {
+		@apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+	}
+
+	.flex-center {
+		@apply flex justify-center items-center;
+	}
+
+	.flex-between {
+		@apply flex justify-between items-center;
+	}
+
+	/* TYPOGRAPHY */
+	/* 64 */
+	.h1-bold {
+		@apply font-bold text-[40px] leading-[48px] lg:text-[48px] lg:leading-[60px]  xl:text-[58px] xl:leading-[74px];
+	}
+
+	/* 40 */
+	.h2-bold {
+		@apply font-bold text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+	}
+
+	.h2-medium {
+		@apply font-medium text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+	}
+
+	/* 36 */
+	.h3-bold {
+		@apply font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+	}
+
+	.h3-medium {
+		@apply font-medium text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+	}
+
+	/* 32 */
+	.h4-medium {
+		@apply font-medium text-[32px] leading-[40px];
+	}
+
+	/* 28 */
+	.h5-bold {
+		@apply font-bold text-[28px] leading-[36px];
+	}
+
+	/* 24 */
+	.p-bold-24 {
+		@apply font-bold text-[24px] leading-[36px];
+	}
+
+	.p-medium-24 {
+		@apply font-medium text-[24px] leading-[36px];
+	}
+
+	.p-regular-24 {
+		@apply font-normal text-[24px] leading-[36px];
+	}
+
+	/* 20 */
+	.p-bold-20 {
+		@apply font-bold text-[20px] leading-[30px] tracking-[2%];
+	}
+
+	.p-semibold-20 {
+		@apply text-[20px] font-semibold leading-[30px] tracking-[2%];
+	}
+
+	.p-medium-20 {
+		@apply text-[20px] font-medium leading-[30px];
+	}
+
+	.p-regular-20 {
+		@apply text-[20px] font-normal leading-[30px] tracking-[2%];
+	}
+
+	/* 18 */
+	.p-semibold-18 {
+		@apply text-[18px] font-semibold leading-[28px] tracking-[2%];
+	}
+
+	.p-medium-18 {
+		@apply text-[18px] font-medium leading-[28px];
+	}
+
+	.p-regular-18 {
+		@apply text-[18px] font-normal leading-[28px] tracking-[2%];
+	}
+
+	/* 16 */
+	.p-bold-16 {
+		@apply text-[16px] font-bold leading-[24px];
+	}
+
+	.p-medium-16 {
+		@apply text-[16px] font-medium leading-[24px];
+	}
+
+	.p-regular-16 {
+		@apply text-[16px] font-normal leading-[24px];
+	}
+
+	/* 14 */
+	.p-semibold-14 {
+		@apply text-[14px] font-semibold leading-[20px];
+	}
+
+	.p-medium-14 {
+		@apply text-[14px] font-medium leading-[20px];
+	}
+
+	.p-regular-14 {
+		@apply text-[14px] font-normal leading-[20px];
+	}
+
+	/* 12 */
+	.p-medium-12 {
+		@apply text-[12px] font-medium leading-[20px];
+	}
+
+	/* SHADCN OVERRIDES */
+	.select-field {
+		@apply w-full bg-grey-50 h-[54px] placeholder:text-grey-500 rounded-full p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent focus:ring-transparent !important;
+	}
+
+	.input-field {
+		@apply bg-grey-50 h-[54px] focus-visible:ring-offset-0 placeholder:text-grey-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent !important;
+	}
+	.quill-input-field {
+		@apply bg-grey-50 h-[124px] focus-visible:ring-offset-0 placeholder:text-grey-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent !important;
+	}
+
+	.textarea {
+		@apply bg-grey-50 flex flex-1 placeholder:text-grey-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent !important;
+	}
+
+	.button {
+		@apply rounded-full h-[54px] p-regular-16;
+	}
+
+	.select-item {
+		@apply py-3 cursor-pointer focus:bg-grey-50 !important; /* makes dropdown hover grey*/
+	}
+
+	.toggle-switch {
+		@apply bg-gray-300 !important;
+	}
 }
 
-.bg-forest-green {
-	background-color: var(--forest-green);
+/* ========================================== HEART ANIMATION */
+footer span.fa-heart {
+	color: #ff415c !important;
+	font-size: 18px;
+	margin: 0 2px;
 }
 
-.bg-sage-green {
-	background-color: var(--sage-green);
+.pulse2 {
+	animation-name: pulse2;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 
-.bg-emerald {
-	background-color: var(--emerald);
+@keyframes pulse2 {
+	0% {
+		transform: scale(1.1);
+	}
+	50% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
-.bg-cream {
-	background-color: var(--cream);
+@keyframes beat {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
 }
 
-.bg-warm-beige {
-	background-color: var(--warm-beige);
+.animate-beat {
+	animation: beat 1s infinite;
+}
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
 }
 
-.bg-champagne-gold {
-	background-color: var(--champagne-gold);
+.container {
+	overflow: hidden;
+	width: 100%;
 }
 
-.bg-bronze {
-	background-color: var(--bronze);
+.animate-scroll {
+	display: flex;
+	width: 200%; /* Double the width to accommodate the duplicated comments */
+	animation: scroll 20s linear infinite;
 }
 
-.bg-warm-white {
-	background-color: var(--warm-white);
+@media (max-width: 768px) {
+	.animate-scroll {
+		animation-duration: 30s; /* Slow down the scroll on smaller screens */
+	}
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
-.bg-light-sage {
-	background-color: var(--light-sage);
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0.9);
+	}
 }
 
-/* Custom scrollbar with Iranti colors */
-::-webkit-scrollbar {
-	width: 8px;
+.modal-enter {
+	animation: fadeIn 0.3s forwards;
 }
 
-::-webkit-scrollbar-track {
-	background: var(--cream);
+.modal-exit {
+	animation: fadeOut 0.3s forwards;
+}
+@media (max-width: 640px) {
+	/* Hide unnecessary columns */
+	.email,
+	.mobile,
+	.stayingPlace,
+	.allergies,
+	.asoEbi,
+	.church,
+	.reception,
+	.afterParty,
+	.checkedIn {
+		display: none;
+	}
+
+	/* Reorder the important columns */
+	.userType {
+		order: 1;
+	}
+	.firstName {
+		order: 2;
+	}
+	.actions {
+		order: 3;
+	}
 }
 
-::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, var(--sage-green), var(--emerald));
-	border-radius: 4px;
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
-::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(
-		to bottom,
-		var(--forest-green),
-		var(--sage-green)
-	);
-}
-
-/* Smooth animations with refined transitions */
-* {
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Focus styles for accessibility with Iranti colors */
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 2px solid var(--sage-green);
-	outline-offset: 2px;
-	box-shadow: 0 0 0 3px rgba(45, 90, 82, 0.1);
+.loader {
+	border-top-color: #ffd700; /* Customize the color */
+	animation: spin 1s linear infinite;
 }
