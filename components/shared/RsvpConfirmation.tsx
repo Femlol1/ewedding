@@ -1,11 +1,7 @@
 "use client";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import QRCode from "qrcode";
 import React, { useEffect, useRef, useState } from "react";
-
-// Dynamically import html2pdf.js only on the client side.
-const html2pdf = dynamic(() => import("html2pdf.js"), { ssr: false });
 
 interface TableGroup {
 	id: string;
@@ -44,23 +40,56 @@ const RsvpConfirmation: React.FC<RsvpConfirmationProps> = ({ rsvp }) => {
 		}
 	}, [rsvp.tableGroupId]);
 
-	const handleDownloadPdf = async () => {
+	const handleDownloadPdf = () => {
 		if (!contentRef.current) return;
-		// Ensure html2pdf is loaded before using it
-		const html2pdfModule = (await import("html2pdf.js")).default;
-		const options = {
-			margin: 0.5,
-			filename: `RSVP_${rsvp.firstName}_${rsvp.lastName}.pdf`,
-			image: { type: "jpeg", quality: 0.98 },
-			html2canvas: { scale: 2 },
-			jsPDF: { unit: "in", format: "A4", orientation: "portrait" },
-		};
-		html2pdfModule().set(options).from(contentRef.current).save();
+
+		// Create a new window for printing
+		const printWindow = window.open("", "_blank");
+		if (!printWindow) return;
+
+		// Copy the content to the new window
+		printWindow.document.write(`
+			<!DOCTYPE html>
+			<html>
+			<head>
+				<title>RSVP Confirmation - ${rsvp.firstName} ${rsvp.lastName}</title>
+				<style>
+					body { font-family: Arial, sans-serif; margin: 20px; }
+					.container { max-width: 600px; margin: 0 auto; text-align: center; }
+					.logo { width: 100px; height: 100px; margin: 0 auto 20px; }
+					.qr-code { margin: 20px 0; }
+					@media print {
+						body { margin: 0; }
+						.no-print { display: none; }
+					}
+				</style>
+			</head>
+			<body>
+				<div class="container">
+					${contentRef.current?.innerHTML || ""}
+				</div>
+				<script>
+					window.onload = function() {
+						window.print();
+						window.onafterprint = function() {
+							window.close();
+						};
+					};
+				</script>
+			</body>
+			</html>
+		`);
+		printWindow.document.close();
 	};
 
 	return (
 		<div className="flex flex-col items-center">
-			<div onClick={handleDownloadPdf}>Download</div>
+			<div
+				onClick={handleDownloadPdf}
+				className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium"
+			>
+				Print/Download PDF
+			</div>
 
 			{/* Hidden element used for PDF generation */}
 			<div className="hidden">
