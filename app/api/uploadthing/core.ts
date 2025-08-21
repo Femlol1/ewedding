@@ -5,7 +5,7 @@ const f = createUploadthing();
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
 	// Gallery uploader - allows images for the wedding gallery
-	galleryUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
+	galleryUploader: f({ image: { maxFileSize: "128MB", maxFileCount: 10 } })
 		// Set permissions and file types for this FileRoute
 		.middleware(async ({ req }) => {
 			// This code runs on your server before upload
@@ -45,6 +45,20 @@ export const ourFileRouter = {
 				console.error("Error saving image to Firestore:", error);
 			}
 
+			return { url: file.url, uploadedBy: metadata.uploadedBy };
+		}),
+
+	// Header images uploader - allows images for page headers
+	headerUploader: f({ image: { maxFileSize: "32MB", maxFileCount: 1 } })
+		.middleware(async ({ req }) => {
+			return { uploadedBy: "headers" };
+		})
+		.onUploadComplete(async ({ metadata, file }) => {
+			console.log("Upload complete for header:", metadata.uploadedBy);
+			console.log("File URL:", file.url);
+
+			// Note: We don't automatically save header images to Firestore here
+			// The admin page will handle the saving with the correct pageId
 			return { url: file.url, uploadedBy: metadata.uploadedBy };
 		}),
 } satisfies FileRouter;

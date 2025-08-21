@@ -2,8 +2,8 @@
 "use client";
 import Collapsible from "@/components/shared/Collapsible";
 import DressCodeModal from "@/components/shared/DressCodeModal";
+import HeaderImage from "@/components/shared/HeaderImage";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FiChevronRight } from "react-icons/fi";
@@ -13,23 +13,13 @@ export default function FAQ() {
 
 	return (
 		<div className="flex flex-col md:flex-col md:mt-20">
-			{/* Image Section */}
-			<section className="relative w-full h-64 ">
-				<Image
-					src="/assets/images/Faq/FaqHeader.jpg" // Replace with your image path
-					alt="Welcome Image"
-					fill
-					style={{ objectFit: "cover" }}
-					quality={100}
-					className="z-0"
-				/>
-				<div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-				<div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20">
-					<h3 className="text-3xl md:text-5xl font-bold mt-2">
-						Frequently Asked Questions
-					</h3>
-				</div>
-			</section>
+			{/* Header Image Section */}
+			<HeaderImage
+				pageId="faq"
+				alt="FAQ Header Image"
+				title="Frequently Asked Questions"
+				fallbackSrc="/assets/images/Faq/FaqHeader.jpg"
+			/>
 			<div className="container mx-auto px-4 py-8">
 				<section className="mb-6">
 					<h2 className="text-2xl font-semibold">Contact Us</h2>
