@@ -3,8 +3,19 @@ import { db, Timestamp } from "@/lib/firebaseAdmin";
 import { NextRequest, NextResponse } from "next/server";
 import qrcode from "qrcode";
 
+// ✅ Prevent this API from being pre-rendered at build time
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
 	try {
+		// Check if Firebase Admin is available
+		if (!db) {
+			return NextResponse.json(
+				{ message: "Database service is not available" },
+				{ status: 503 }
+			);
+		}
+
 		const data = await req.json();
 		const { code } = data;
 

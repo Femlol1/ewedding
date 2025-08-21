@@ -11,6 +11,14 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
 	try {
+		// Check if Firebase Admin is available
+		if (!db) {
+			return NextResponse.json(
+				{ message: "Database service is not available" },
+				{ status: 503 }
+			);
+		}
+
 		const { emails } = await req.json(); // Expecting an array of emails
 
 		if (!emails || !Array.isArray(emails) || emails.length === 0) {

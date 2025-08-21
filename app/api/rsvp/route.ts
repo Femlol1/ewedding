@@ -6,10 +6,21 @@ import path from "path";
 import { PDFDocument, rgb } from "pdf-lib";
 import qrcode from "qrcode";
 
+// ✅ Prevent this API from being pre-rendered at build time
+export const dynamic = "force-dynamic";
+
 const EXCEL_FILE_NAME = "rsvps.xlsx";
 
 export async function POST(req: NextRequest) {
 	try {
+		// Check if Firebase Admin is available
+		if (!db) {
+			return NextResponse.json(
+				{ message: "Database service is not available" },
+				{ status: 503 }
+			);
+		}
+
 		const data = await req.json();
 		const { code } = data;
 

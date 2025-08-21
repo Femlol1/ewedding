@@ -8,6 +8,9 @@ import {
 } from "@/lib/firebase";
 import { NextRequest, NextResponse } from "next/server";
 
+// ✅ Prevent this API from being pre-rendered at build time
+export const dynamic = "force-dynamic";
+
 interface GalleryImage {
 	id: string;
 	url: string;

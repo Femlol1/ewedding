@@ -3,10 +3,21 @@ import { Workbook } from 'exceljs';
 import { NextRequest, NextResponse } from 'next/server';
 import { Readable } from 'stream';
 
+// ✅ Prevent this API from being pre-rendered at build time
+export const dynamic = "force-dynamic";
+
 const EXCEL_FILE_NAME = 'rsvps.xlsx';
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if Firebase Admin is available
+    if (!storage) {
+      return NextResponse.json(
+        { message: "Storage service is not available" },
+        { status: 503 }
+      );
+    }
+
     const data = await req.json();
 
     const bucket = storage.bucket(process.env.FIREBASE_STORAGE_BUCKET);

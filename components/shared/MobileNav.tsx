@@ -14,7 +14,7 @@ const MobileNav = () => {
 
 	return (
 		<nav className="md:hidden">
-			<Sheet Temitopen={isOpen} onOpenChange={setIsOpen}>
+			<Sheet open={isOpen} onOpenChange={setIsOpen}>
 				<SheetTrigger className="align-middle" onClick={handleOpen}>
 					{/* Inline SVG for menu icon */}
 					<svg

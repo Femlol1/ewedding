@@ -154,7 +154,7 @@ function toast({ ...props }: Toast) {
 		toast: {
 			...props,
 			id,
-			Temitopen: true,
+			open: true,
 			onOpenChange: (open) => {
 				if (!open) dismiss();
 			},

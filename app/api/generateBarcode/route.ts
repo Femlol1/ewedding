@@ -2,6 +2,9 @@ import bwipjs from 'bwip-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument, rgb } from 'pdf-lib';
 
+// ✅ Prevent this API from being pre-rendered at build time
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();

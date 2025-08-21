@@ -11,6 +11,14 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
 	try {
+		// Check if Firebase Admin is available
+		if (!db) {
+			return NextResponse.json(
+				{ message: "Database service is not available" },
+				{ status: 503 }
+			);
+		}
+
 		console.log("API Called: Sending RSVP Emails...");
 
 		// 1. Fetch all RSVPs from Firestore
