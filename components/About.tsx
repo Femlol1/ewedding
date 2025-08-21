@@ -61,8 +61,8 @@ export default function About() {
 						{/* Main large image */}
 						<div className="mb-6">
 							<img
-								src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&h=400&fit=crop&crop=faces"
-								alt="Couple Portrait"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7eGQfc2FzEyLU2AQrqmgw1pnMV689ZJI0iBKX"
+								alt="Emmanuel & Temitope"
 								className="w-full h-80 object-cover rounded-2xl shadow-lg"
 							/>
 						</div>
@@ -70,18 +70,18 @@ export default function About() {
 						{/* Three smaller images in a row */}
 						<div className="grid grid-cols-3 gap-4">
 							<img
-								src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=200&fit=crop&crop=center"
-								alt="Our First Date"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7PsTqQBJBR2LaOiQ4CXNFSqHGnZjexygm3IMf"
+								alt="Our Journey Together"
 								className="w-full h-32 object-cover rounded-xl shadow-md"
 							/>
 							<img
-								src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=300&h=200&fit=crop&crop=center"
-								alt="The Proposal"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7RjjDUZl1MqBNas4T8Pv7rGdLl9UWuHhoZAYS"
+								alt="Beautiful Moments"
 								className="w-full h-32 object-cover rounded-xl shadow-md"
 							/>
 							<img
-								src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=300&h=200&fit=crop&crop=center"
-								alt="Engagement Ring"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7tVjjVrni5m0fUOsTaDqneXyhuPkiQc2wKJxp"
+								alt="Love & Happiness"
 								className="w-full h-32 object-cover rounded-xl shadow-md"
 							/>
 						</div>

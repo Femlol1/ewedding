@@ -2,58 +2,147 @@
 
 import { useState } from "react";
 
+interface GalleryItem {
+	id: number;
+	title: string;
+	category: string;
+	url: string;
+	isVideo?: boolean;
+}
+
 export default function Gallery() {
 	const [selectedImage, setSelectedImage] = useState<number | null>(null);
+	const [activeFilter, setActiveFilter] = useState<string>("all");
 
-	// Stock wedding images from Unsplash
-	const images = [
+	// Our actual wedding and engagement photos and videos
+	const images: GalleryItem[] = [
 		{
 			id: 1,
-			title: "Engagement Shoot",
+			title: "Beautiful Moments",
 			category: "engagement",
-			url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=500&fit=crop&crop=faces",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy715gaanb6tF8dyIbiTZVerO3Qg12Eq9SRACpJ",
 		},
 		{
 			id: 2,
-			title: "Our First Date",
+			title: "Our Love Story",
 			category: "memories",
-			url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500&fit=crop&crop=center",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7eGQfc2FzEyLU2AQrqmgw1pnMV689ZJI0iBKX",
 		},
 		{
 			id: 3,
-			title: "Beach Vacation",
-			category: "travel",
-			url: "https://images.unsplash.com/photo-1516627145497-ae2af99fcd24?w=500&h=500&fit=crop&crop=center",
+			title: "Together Forever",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7PsTqQBJBR2LaOiQ4CXNFSqHGnZjexygm3IMf",
 		},
 		{
 			id: 4,
-			title: "The Proposal",
-			category: "engagement",
-			url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&h=500&fit=crop&crop=center",
+			title: "Perfect Day",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7RjjDUZl1MqBNas4T8Pv7rGdLl9UWuHhoZAYS",
 		},
 		{
 			id: 5,
-			title: "Family Gathering",
+			title: "Sweet Memories",
 			category: "memories",
-			url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=500&h=500&fit=crop&crop=center",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7tVjjVrni5m0fUOsTaDqneXyhuPkiQc2wKJxp",
 		},
 		{
 			id: 6,
-			title: "Mountain Trip",
-			category: "travel",
-			url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&h=500&fit=crop&crop=center",
+			title: "Happy Times",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7nTTB7uKYXej96acMQbZCqLH7Dtp8IGx1wgEB",
 		},
 		{
 			id: 7,
-			title: "Anniversary Dinner",
+			title: "Precious Moments",
 			category: "memories",
-			url: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=500&h=500&fit=crop&crop=center",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7wIb8BfYFgO3CEQripl4qbyKDk6N2jTMhAaB9",
 		},
 		{
 			id: 8,
-			title: "Ring Close-up",
+			title: "Love & Joy",
 			category: "engagement",
-			url: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&h=500&fit=crop&crop=center",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7cnKMQzVar0Wi6nQvyaz1tqIC7pXGLdVDk4wA",
+		},
+		{
+			id: 9,
+			title: "Celebration",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7qzJU60nCRyj68sHL1UAxJPYXkNpltEqFf39c",
+		},
+		{
+			id: 10,
+			title: "Blissful Day",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7fDmkqgLQgpjSWbJComZl7OGNtVTK8kxve1P3",
+		},
+		{
+			id: 11,
+			title: "Special Moments",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7fD3p8YLQgpjSWbJComZl7OGNtVTK8kxve1P3",
+		},
+		{
+			id: 12,
+			title: "Pure Happiness",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7LCV5ai9iQmvU9NDoWJgYxOwLqt6Srspke4G0",
+		},
+		{
+			id: 13,
+			title: "Cherished Times",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7KjRIhGgwrJlfYqaBpvVknDxAWS0htO42LPZT",
+		},
+		{
+			id: 14,
+			title: "Wedding Dreams",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7GseOpkXw8HA1auNCi02M3nycJvzgrjSDFWLV",
+		},
+		{
+			id: 15,
+			title: "Forever Love",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7tVjjVrni5m0fUOsTaDqneXyhuPkiQc2wKJxp",
+		},
+		{
+			id: 16,
+			title: "Romantic Moments",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7HZilplGpwY5AXP2o4ZKNQHOtxIFhfTBdlJqS",
+		},
+		{
+			id: 17,
+			title: "Beautiful Memories",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7aW3IkLq2qdeCyUoIbhFQwLt7BW18K9icX4Jm",
+		},
+		{
+			id: 18,
+			title: "Wedding Journey",
+			category: "engagement",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7Cg9F6qHmcEJDowqTgybj0hAaUkseBFZG1LNi",
+		},
+		{
+			id: 19,
+			title: "Love Story",
+			category: "memories",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7Keujd38gwrJlfYqaBpvVknDxAWS0htO42LPZ",
+		},
+		{
+			id: 20,
+			title: "Beautiful Memories Video",
+			category: "videos",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7EdK3IijWuQ1pZiRF7jesTkUgNAwJPzyhvboO",
+			isVideo: true,
+		},
+		{
+			id: 21,
+			title: "Special Moments Video",
+			category: "videos",
+			url: "https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7l1JYBW3Q4fAHsYzPVoEguXw9OBmS1i6rvG5a",
+			isVideo: true,
 		},
 	];
 
@@ -81,6 +170,11 @@ export default function Gallery() {
 		}
 	};
 
+	const filteredImages =
+		activeFilter === "all"
+			? images
+			: images.filter((image) => image.category === activeFilter);
+
 	return (
 		<section
 			id="gallery"
@@ -91,14 +185,31 @@ export default function Gallery() {
 					<h2 className="text-4xl sm:text-5xl font-bold text-forest-green mb-4">
 						Our Gallery
 					</h2>
-					<p className="text-xl text-sage-green max-w-3xl mx-auto">
+					<p className="text-xl text-sage-green max-w-3xl mx-auto mb-8">
 						Capturing moments of our journey together
 					</p>
+
+					{/* Filter Buttons */}
+					<div className="flex flex-wrap justify-center gap-4 mb-8">
+						{["all", "engagement", "memories", "videos"].map((filter) => (
+							<button
+								key={filter}
+								onClick={() => setActiveFilter(filter)}
+								className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+									activeFilter === filter
+										? "bg-forest-green text-white shadow-lg"
+										: "bg-white text-sage-green hover:bg-light-sage border border-sage-green"
+								}`}
+							>
+								{filter.charAt(0).toUpperCase() + filter.slice(1)}
+							</button>
+						))}
+					</div>
 				</div>
 
 				{/* Masonry-style Gallery Grid */}
 				<div className="columns-2 md:columns-3 lg:columns-4 gap-6">
-					{images.map((image, index) => (
+					{filteredImages.map((image, index) => (
 						<div
 							key={image.id}
 							className={`relative mb-6 break-inside-avoid cursor-pointer group ${
@@ -110,12 +221,37 @@ export default function Gallery() {
 							}`}
 							onClick={() => openModal(image.id)}
 						>
-							{/* Actual stock images */}
-							<img
-								src={image.url}
-								alt={image.title}
-								className="w-full h-full object-cover rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105"
-							/>
+							{/* Display image or video thumbnail */}
+							{image.isVideo ? (
+								<video
+									src={image.url}
+									className="w-full h-full object-cover rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105"
+									muted
+									playsInline
+									poster={`${image.url}#t=0.1`}
+								/>
+							) : (
+								<img
+									src={image.url}
+									alt={image.title}
+									className="w-full h-full object-cover rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105"
+								/>
+							)}
+
+							{/* Video play icon overlay */}
+							{image.isVideo && (
+								<div className="absolute inset-0 flex items-center justify-center">
+									<div className="bg-white/80 rounded-full p-3 shadow-lg">
+										<svg
+											className="w-8 h-8 text-forest-green"
+											fill="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path d="M8 5v14l11-7z" />
+										</svg>
+									</div>
+								</div>
+							)}
 
 							{/* Subtle overlay on hover */}
 							<div className="absolute inset-0 bg-forest-green/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
@@ -130,7 +266,11 @@ export default function Gallery() {
 											strokeLinecap="round"
 											strokeLinejoin="round"
 											strokeWidth={2}
-											d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+											d={
+												image.isVideo
+													? "M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1"
+													: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+											}
 										/>
 										<path
 											strokeLinecap="round"
@@ -209,14 +349,22 @@ export default function Gallery() {
 								</svg>
 							</button>
 
-							{/* Image */}
+							{/* Image or Video */}
 							<div className="w-full h-full flex items-center justify-center">
 								{(() => {
 									const imageIndex = images.findIndex(
 										(img) => img.id === selectedImage
 									);
 									const image = images[imageIndex];
-									return (
+									return image.isVideo ? (
+										<video
+											src={image.url}
+											controls
+											className="w-full max-w-4xl max-h-[80vh] object-contain rounded-lg shadow-soft-green"
+											autoPlay
+											muted
+										/>
+									) : (
 										<img
 											src={image.url}
 											alt={image.title}
