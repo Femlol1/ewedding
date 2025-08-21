@@ -42,17 +42,16 @@ function DressCodeModal({ onClose }) {
 				</p>
 				<h4 className="text-lg font-bold mt-4 mb-2">Who to contact:</h4>
 				<p className="mb-2">
-					<strong>For Brides Family Asoebi contact:</strong> Mrs Pelumi
-					Osibemekun
+					<strong>For Brides Family Asoebi contact:</strong>
 				</p>
 				<p className="mb-2">
-					<strong>For Grooms family Asoebi contact:</strong> Mrs Funke Oyediran
+					<strong>For Grooms family Asoebi contact:</strong>
 				</p>
 				<p className="mb-2">
-					<strong>Groom:</strong> Mr Tobilobawanimi Oyediran
+					<strong>Groom:</strong>
 				</p>
 				<p className="mb-2">
-					<strong>Bride:</strong> Miss Temitopeoluwa Osibemekun
+					<strong>Bride:</strong>
 				</p>
 
 				<button

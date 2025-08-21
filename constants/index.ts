@@ -88,7 +88,7 @@ export const events = [
 		icon: "/assets/icons/church.png", //church icon
 		heading: " ",
 		description:
-			"Opeoluwa Osibemekun and Tobilobawanimi Oyediran will be joyfully united in holy matrimony, with a wedding message, hymns, and special prayers marking the beginning of their blessed union. ",
+			"Temitope and Tobiloba  will be joyfully united in holy matrimony, with a wedding message, hymns, and special prayers marking the beginning of their blessed union. ",
 		gmap: "https://maps.app.goo.gl/ecTwa2JodZuKdjsc6",
 	},
 	{

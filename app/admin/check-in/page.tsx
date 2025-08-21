@@ -257,12 +257,12 @@ export default function CheckInPage() {
 					>
 						<option value="">Filter by User Type</option>
 						<option value="vip">VIP</option>
-						<option value="opesGuest">Opes Guest</option>
+						<option value="opesGuest">Temitopes Guest</option>
 						<option value="TobilobasGuest">Tobilobas Guest</option>
 						<option value="osibemekunFamilyGuest">
-							Osibemekun Family Guest
+							Temitopes Family Guest
 						</option>
-						<option value="oyediranFamilyGuest">Oyediran Family Guest</option>
+						<option value="oyediranFamilyGuest">Tobilobas Family Guest</option>
 						<option value="bridalParty">Bridal Party</option>
 					</select>
 

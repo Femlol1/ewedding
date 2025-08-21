@@ -177,19 +177,19 @@ export default function StatsPage() {
 
 	const userTypeStats = [
 		{ label: "VIP Users", value: stats.vipUser, color: "bg-purple-500" },
-		{ label: "Opes Guests", value: stats.opesGuest, color: "bg-blue-500" },
+		{ label: "Temitopes Guests", value: stats.opesGuest, color: "bg-blue-500" },
 		{
 			label: "Tobilobas Guests",
 			value: stats.TobilobasGuest,
 			color: "bg-green-500",
 		},
 		{
-			label: "Osibemekun Family",
+			label: "Temitopes Family",
 			value: stats.osibemekunFamilyGuest,
 			color: "bg-yellow-500",
 		},
 		{
-			label: "Oyediran Family",
+			label: "Tobilobas Family",
 			value: stats.oyediranFamilyGuest,
 			color: "bg-red-500",
 		},

@@ -110,12 +110,10 @@ const UpdateRsvpModal: React.FC<UpdateRsvpModalProps> = ({
 					>
 						<option value="">Select User Type</option>
 						<option value="vip">VIP</option>
-						<option value="opesGuest">Opes Guest</option>
+						<option value="temitopesGuest">Temitope Guest</option>
 						<option value="TobilobasGuest">Tobilobas Guest</option>
-						<option value="osibemekunFamilyGuest">
-							Osibemekun Family Guest
-						</option>
-						<option value="oyediranFamilyGuest">Oyediran Family Guest</option>
+						<option value="temitopesFamilyGuest">Temitope Family Guest</option>
+						<option value="TobilobasFamilyGuest">Tobilobas Family Guest</option>
 						<option value="bridalParty">Bridal Party</option>
 					</select>
 					<Label>Staying Place</Label>

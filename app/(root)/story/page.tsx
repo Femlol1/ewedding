@@ -1,6 +1,7 @@
 "use client";
 
 import Gallery from "@/components/shared/Gallery";
+import HeaderImage from "@/components/shared/HeaderImage";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -29,8 +30,8 @@ export default function OurStory() {
 			<div>
 				<div className="relative">
 					<Image
-						src="/assets/images/OurStoryPage/OpeStoryClose.jpg" // Replace with your image path
-						alt="Ope"
+						src="" // Replace with your image path
+						alt="Temitope"
 						width={150}
 						height={150}
 						className="border-4 border-primary flex-shrink-0 transition-transform duration-300 transform hover:scale-110 rounded-full"
@@ -89,8 +90,8 @@ export default function OurStory() {
 				</p>
 				<br />
 				<Image
-					src="/assets/images/OurStoryPage/OpeStoryBottom.jpg" // Replace with your image path
-					alt="ope buttom picture"
+					src="" // Replace with your image path
+					alt="Temitope buttom picture"
 					width={450}
 					height={450}
 					className="border-4 border-primary flex-shrink-0 transition-transform duration-300 transform hover:scale-110"
@@ -101,7 +102,7 @@ export default function OurStory() {
 			<div>
 				<div className=" container relative">
 					<Image
-						src="/assets/images/OurStoryPage/TobilobaStoryClose.jpg" // Replace with your image path
+						src="" // Replace with your image path
 						alt="Tobiloba"
 						width={150}
 						height={150}
@@ -138,7 +139,7 @@ export default function OurStory() {
 
 				<br />
 				<Image
-					src="/assets/images/OurStoryPage/TobilobaStoryButtom.jpg" // Replace with your image path
+					src="" // Replace with your image path
 					alt="Tobiloba buttom picture"
 					width={450}
 					height={450}
@@ -152,19 +153,12 @@ export default function OurStory() {
 		<div className="flex flex-col md:flex-col md:mt-20">
 			{/* Image Section */}
 			<section className="relative w-full h-64 ">
-				<Image
-					src="/assets/images/OurStoryPage/2S6A1507.jpg" // Replace with your image path
-					alt="Welcome Image"
-					fill
-					style={{ objectFit: "cover" }}
-					priority={true} // {false} | {true}
-					quality={100}
-					className="z-0"
+				<HeaderImage
+					pageId="story"
+					alt="Story Header Image"
+					title="Our Story"
+					fallbackSrc="/assets/images/Faq/FaqHeader.jpg"
 				/>
-				<div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-				<div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20">
-					<h3 className="text-3xl md:text-5xl font-bold mt-2">Our Story</h3>
-				</div>
 			</section>
 
 			<div className="container mx-auto px-4 py-8">
@@ -173,7 +167,7 @@ export default function OurStory() {
 
 					<div className="flex items-start gap-4">
 						<Image
-							src="/assets/images/OurStoryPage/OpeStoryClose.jpg" // Replace with your image path
+							src="" // Replace with your image path
 							alt="Temitope"
 							width={150}
 							height={150}
@@ -185,8 +179,8 @@ export default function OurStory() {
 							</div>
 
 							<p className="text-gray-700 line-clamp-3">
-								We first met in November 2022 at a TLC Vibe, a Christian youth
-								group...
+								The first time I encountered Tobi was during the planning of a
+								concert I organized for a client of mine...
 							</p>
 							<Dialog>
 								<DialogTrigger asChild>
@@ -210,7 +204,7 @@ export default function OurStory() {
 					{/* Tobiloba's Story */}
 					<div className="flex items-start gap-4">
 						<Image
-							src="/assets/images/OurStoryPage/TobilobaStoryClose.jpg" // Replace with your image path
+							src="" // Replace with your image path
 							alt="Tobiloba"
 							width={150}
 							height={150}
@@ -222,8 +216,8 @@ export default function OurStory() {
 							</div>
 
 							<p className="text-gray-700 line-clamp-3">
-								Our love story began when we met through a mutual friend at
-								Vibe, TLC&rsquo;s young adult church meeting...
+								Our love story began at an event where she was the project
+								manager. Our first interaction was on WhatsApp...
 							</p>
 							<Dialog>
 								<DialogTrigger asChild>
