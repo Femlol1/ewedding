@@ -61,7 +61,7 @@ export default function About() {
 						{/* Main large image */}
 						<div className="mb-6">
 							<img
-								src="/photos/1 (2).JPG"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7eGQfc2FzEyLU2AQrqmgw1pnMV689ZJI0iBKX"
 								alt="Emmanuel & Temitope"
 								className="w-full h-80 object-cover rounded-2xl shadow-lg"
 							/>
@@ -70,17 +70,17 @@ export default function About() {
 						{/* Three smaller images in a row */}
 						<div className="grid grid-cols-3 gap-4">
 							<img
-								src="/photos/1 (3).jpg"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7PsTqQBJBR2LaOiQ4CXNFSqHGnZjexygm3IMf"
 								alt="Our Journey Together"
 								className="w-full h-32 object-cover rounded-xl shadow-md"
 							/>
 							<img
-								src="/photos/1 (4).jpg"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7RjjDUZl1MqBNas4T8Pv7rGdLl9UWuHhoZAYS"
 								alt="Beautiful Moments"
 								className="w-full h-32 object-cover rounded-xl shadow-md"
 							/>
 							<img
-								src="/photos/1 (5).JPG"
+								src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy7tVjjVrni5m0fUOsTaDqneXyhuPkiQc2wKJxp"
 								alt="Love & Happiness"
 								className="w-full h-32 object-cover rounded-xl shadow-md"
 							/>

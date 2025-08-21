@@ -9,7 +9,7 @@ export default function Hero() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<img
-					src="/photos/1 (1).JPG"
+					src="https://3ddco28mb0.ufs.sh/f/T5kSgOemEcy715gaanb6tF8dyIbiTZVerO3Qg12Eq9SRACpJ"
 					alt="Emmanuel & Temitope Wedding"
 					className="w-full h-full object-cover"
 				/>
