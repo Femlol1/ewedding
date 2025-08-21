@@ -24,14 +24,14 @@ export default function FAQ() {
 				<section className="mb-6">
 					<h2 className="text-2xl font-semibold">Contact Us</h2>
 					<p>
-						If you need to get in touch, please email us at
-						femi@Tobilobaandope.com. We would love to hear from you!
+						If you need to get in touch please email us at
+						twoteesonehomeafolabis26@gmail.com. We would love to hear from you!
 					</p>
 					<p>
-						If it’s regarding the vendors, please reach out to our wedding
-						planner at Kahi Company (Ehi) -{" "}
+						If it’s regarding the vendors or you are a vendor please reach out
+						to one of our wedding coordinators at Bayo -{" "}
 						<span className="text-primary-500 hover:text-primary-700">
-							<a href={`tel:${`+2348080918070`}`}>+234(0)808 091 8070</a>
+							<a href={`tel:${`+2348154529062`}`}>+234 815 452 9062.</a>
 						</span>{" "}
 						.{" "}
 					</p>
@@ -51,7 +51,7 @@ export default function FAQ() {
 							ensure a smooth and enjoyable experience for all guests.
 						</p>
 					</Collapsible>
-					<Collapsible label="Who created the website?">
+					{/* <Collapsible label="Who created the website?">
 						<p>
 							The website was created by Femi with lots of love for his sister.
 							If you are interested in his work or would like a website for
@@ -64,15 +64,18 @@ export default function FAQ() {
 							</Link>
 							.
 						</p>
-					</Collapsible>
+					</Collapsible> */}
 				</section>
 
 				<section className="mb-6">
 					<h2 className="text-2xl font-semibold">Asoebi</h2>
 					<Collapsible label="Where to get wedding clothes?">
 						<p>
-							You can get your wedding clothes from the recommended vendors.
-							Please contact our wedding planner for more details.
+							You can get your wedding clothes from the website here. There is a
+							page on the website here designated to take you through the
+							pre-ordering process. There’s asoebi for both Thursday and
+							Saturday. Please contact us or our designated contact for Asoebi
+							inquires more details, or payment issues.
 						</p>
 					</Collapsible>
 					<Collapsible label="How do I get a tailor to sew my clothes?">
@@ -95,6 +98,15 @@ export default function FAQ() {
 							)}
 						</p>
 					</Collapsible>
+					<Collapsible
+						label="How do I get in contact with any MUA/Hairstylists and or nail technicians? 
+"
+					>
+						<p>
+							We have a list of recommended stylists you can reach out to them
+							wnd provide this code “Twotees26” to book a discounted service.
+						</p>
+					</Collapsible>
 				</section>
 
 				<section>
@@ -111,18 +123,6 @@ export default function FAQ() {
 							and follow the application instructions.
 						</p>
 					</Collapsible>
-					<Collapsible label="How do I renew my Nigerian Passport?">
-						<p>
-							To renew your Nigerian passport, visit the official{" "}
-							<Link
-								className="text-primary-500 hover:text-primary-700 underline"
-								href={"https://immigration.gov.ng/"}
-							>
-								Nigerian immigration website
-							</Link>{" "}
-							and follow the renewal instructions.
-						</p>
-					</Collapsible>
 					<Collapsible label="How can I get a Nigerian passport for the first time?">
 						<p>
 							To get a Nigerian passport for the first time, visit the official{" "}
@@ -135,6 +135,19 @@ export default function FAQ() {
 							and follow the application instructions for a new passport.
 						</p>
 					</Collapsible>
+					<Collapsible label="How do I renew my Nigerian Passport?">
+						<p>
+							To renew your Nigerian passport, visit the official{" "}
+							<Link
+								className="text-primary-500 hover:text-primary-700 underline"
+								href={"https://immigration.gov.ng/"}
+							>
+								Nigerian immigration website
+							</Link>{" "}
+							and follow the renewal instructions.
+						</p>
+					</Collapsible>
+
 					<Collapsible label="How can I arrange airport pick up?">
 						<p>
 							If you are staying at the hotel Vintanio, you can arrange pickup
