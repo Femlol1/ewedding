@@ -180,8 +180,50 @@ const AdminPage = () => {
 	if (loading) return <p>Loading...</p>;
 
 	return (
-		<div className="container mx-auto px-4 py-8 mt-20">
-			<h1 className="text-3xl font-bold mb-6">Admin Panel</h1>
+		<div className="container mx-auto px-4 py-8">
+			<div className="flex justify-between items-center mb-6">
+				<h1 className="text-3xl font-bold">RSVP Management</h1>
+				<div className="flex space-x-4">
+					<a
+						href="/admin/gallery"
+						className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+					>
+						Manage Gallery
+					</a>
+					<a
+						href="/admin/dashboard"
+						className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+					>
+						Dashboard
+					</a>
+				</div>
+			</div>
+
+			{/* Quick Stats */}
+			<div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+				<div className="bg-white p-4 rounded-lg shadow border">
+					<h3 className="text-sm font-medium text-gray-600">Total RSVPs</h3>
+					<p className="text-2xl font-bold text-gray-900">{rsvps.length}</p>
+				</div>
+				<div className="bg-white p-4 rounded-lg shadow border">
+					<h3 className="text-sm font-medium text-gray-600">Checked In</h3>
+					<p className="text-2xl font-bold text-green-600">
+						{rsvps.filter((rsvp) => rsvp.checkedIn).length}
+					</p>
+				</div>
+				<div className="bg-white p-4 rounded-lg shadow border">
+					<h3 className="text-sm font-medium text-gray-600">Church</h3>
+					<p className="text-2xl font-bold text-blue-600">
+						{rsvps.filter((rsvp) => rsvp.church === "yes").length}
+					</p>
+				</div>
+				<div className="bg-white p-4 rounded-lg shadow border">
+					<h3 className="text-sm font-medium text-gray-600">Reception</h3>
+					<p className="text-2xl font-bold text-purple-600">
+						{rsvps.filter((rsvp) => rsvp.reception === "yes").length}
+					</p>
+				</div>
+			</div>
 
 			{/* Search and Filter Inputs */}
 			<div className="flex flex-col md:flex-row gap-4 mb-8">

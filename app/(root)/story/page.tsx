@@ -264,7 +264,7 @@ export default function OurStory() {
 				</section>
 
 				<section className="mt-10">
-					<div id="gallery-title" className="wrapper h3-bold text-center cursor-pointer select-none">GALLERY</div>
+					<div className="wrapper h3-bold text-center">GALLERY</div>
 					<Gallery />
 				</section>
 

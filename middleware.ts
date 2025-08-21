@@ -145,11 +145,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matcher: [
-		"/admin/:path*",
-		"/check-in/:path*",
-		"/stats/:path*",
-		"/comments/:path*",
-		"/check-in/:path*",
-	], // Protect only admin and check-in routes
+	matcher: ["/admin/:path*"], // Protect admin routes (which will include check-in, stats, comments)
 };

@@ -59,24 +59,24 @@ export const adminLinks = [
 	},
 	{
 		label: "Comments",
-		route: "/comments",
+		route: "/admin/comments",
 	},
 	{
 		label: "Check In",
-		route: "/check-in",
+		route: "/admin/check-in",
 	},
 
 	{
 		label: "All stats",
-		route: "/stats",
+		route: "/admin/stats",
 	},
 	{
 		label: "Tables",
-		route: "/table-groups",
+		route: "/admin/table-groups",
 	},
 	{
 		label: "Assign Tables",
-		route: "/assign-table",
+		route: "/admin/assign-table",
 	},
 ];
 export const events = [
