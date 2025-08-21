@@ -62,6 +62,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 								Comments
 							</Link>
 							<Link
+								href="/admin/asoebi"
+								className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+							>
+								asoebi
+							</Link>
+							<Link
 								href="/"
 								className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
 							>

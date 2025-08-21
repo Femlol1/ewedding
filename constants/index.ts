@@ -26,6 +26,10 @@ export const userLinks = [
 		route: "/gifts",
 	},
 	{
+		label: "Asoebi",
+		route: "/asoebi",
+	},
+	{
 		label: "Guest",
 		route: "/guest",
 	},
@@ -77,6 +81,10 @@ export const adminLinks = [
 	{
 		label: "Assign Tables",
 		route: "/admin/assign-table",
+	},
+	{
+		label: "Asoebi Orders",
+		route: "/admin/asoebi",
 	},
 ];
 export const events = [
