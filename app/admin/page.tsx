@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import VideoUpload from "../../components/VideoUpload";
 import { Order } from "../../types/order";
 import { RSVP, RSVPStats } from "../../types/rsvp";
 
-type AdminTab = "overview" | "orders" | "rsvp" | "payments";
+type AdminTab = "overview" | "orders" | "rsvp" | "payments" | "videos";
 
 export default function AdminDashboard() {
 	const [activeTab, setActiveTab] = useState<AdminTab>("overview");
@@ -298,6 +299,7 @@ export default function AdminDashboard() {
 							{ id: "orders", label: "Orders" },
 							{ id: "rsvp", label: "RSVP Management" },
 							{ id: "payments", label: "Payment Tracking" },
+							{ id: "videos", label: "Video Upload" },
 						].map((tab) => (
 							<button
 								key={tab.id}
@@ -1027,6 +1029,13 @@ export default function AdminDashboard() {
 								</table>
 							</div>
 						</div>
+					</div>
+				)}
+
+				{/* Videos Tab */}
+				{activeTab === "videos" && (
+					<div className="space-y-6">
+						<VideoUpload />
 					</div>
 				)}
 			</div>
