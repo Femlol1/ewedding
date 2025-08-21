@@ -51,9 +51,9 @@ const Gifts = () => {
 							<p className="text-gray-700 mt-2">
 								<strong>Bank of America</strong>
 								<br />
-								<strong>Account name:</strong> Tobilobawanimi Oyediran <br />
-								<strong>Account number:</strong> 446055799865 <br />
-								<strong>For Zelle:</strong> Tobilobaoyed26@gmail.com
+								<strong>Account name:</strong> <br />
+								<strong>Account number:</strong> <br />
+								<strong>For Zelle:</strong>
 							</p>
 						</div>
 						<div className="border border-gray-200 p-4 rounded-lg shadow-md">
@@ -70,10 +70,10 @@ const Gifts = () => {
 								United Kingdom
 							</h3>
 							<p className="text-gray-700 mt-2">
-								<strong>Account name:</strong> Temitope Osibemekun <br />
-								<strong>Account number:</strong> 81453566
+								<strong>Account name:</strong> <br />
+								<strong>Account number:</strong>
 								<br />
-								<strong>Sort code:</strong> 60-84-07
+								<strong>Sort code:</strong>
 							</p>
 						</div>
 						<div className="border border-gray-200 p-4 rounded-lg shadow-md">
@@ -92,23 +92,16 @@ const Gifts = () => {
 							<p className="text-gray-700 mt-2">
 								<strong>GTBank</strong>
 								<br />
-								<strong>Account name:</strong> OSIBEMEKUN TemitopeOLUWA
-								EFUNYINKA <br />
-								<strong>Account number:</strong> 0170585078
+								<strong>Account name:</strong>
+								<br />
+								<strong>Account number:</strong>
 							</p>
 						</div>
 					</div>
 
 					<h2 className="mt-8 text-2xl font-semibold text-gray-900">PayPal</h2>
 					<p className="mt-4 text-gray-700">
-						For convenience, you can also use{" "}
-						<Link
-							className="text-primary underline hover:text-primary-600"
-							href={"https://www.paypal.me/OpeOsibemekun"}
-						>
-							PayPal
-						</Link>{" "}
-						to send your gift.
+						For convenience, you can also use to send your gift.
 					</p>
 
 					<h2 className="mt-8 text-2xl font-semibold text-gray-900">
@@ -117,13 +110,6 @@ const Gifts = () => {
 					<p className="mt-4 text-gray-700">
 						You can also view our wishlist on Amazon for more personalized
 						gifts:{" "}
-						<Link
-							className="text-primary underline hover:text-primary-600"
-							href="https://www.amazon.co.uk/wedding/registry/33LO6NU0J2CXU"
-							target="_blank"
-						>
-							Amazon Wishlist
-						</Link>
 					</p>
 				</div>
 

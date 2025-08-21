@@ -7,9 +7,9 @@ import {
 	DialogContent,
 	DialogDescription,
 	DialogHeader,
+	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
