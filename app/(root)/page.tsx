@@ -65,8 +65,8 @@ const WelcomePage: React.FC = () => {
 					</h1>
 					<p className="text-center text-white mt-4">
 						Welcome to our wedding Website <br />
-						We’re getting married ! <br />
-						December 17th and 19th 2026
+						We’re getting married! <br />
+						December 17th and 19th,2026
 					</p>
 					<div className="text-center mt-8">
 						<Link href="/gifts">
