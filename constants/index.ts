@@ -25,10 +25,10 @@ export const userLinks = [
 		label: "Gifts",
 		route: "/gifts",
 	},
-	{
-		label: "Asoebi",
-		route: "/asoebi",
-	},
+	// {
+	// 	label: "Asoebi",
+	// 	route: "/asoebi",
+	// },
 	{
 		label: "Guest",
 		route: "/guest",
