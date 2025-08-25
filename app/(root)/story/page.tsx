@@ -30,7 +30,7 @@ export default function OurStory() {
 			<div>
 				<div className="relative">
 					<Image
-						src="" // Replace with your image path
+						src="/assets/images/OurStoryPage/EnoughA.JPEG.jpg" // Replace with your image path
 						alt="Temitope"
 						width={150}
 						height={150}
@@ -90,7 +90,7 @@ export default function OurStory() {
 				</p>
 				<br />
 				<Image
-					src="" // Replace with your image path
+					src="/assets/images/OurStoryPage/Enough.jpg" // Replace with your image path
 					alt="Temitope buttom picture"
 					width={450}
 					height={450}
@@ -102,7 +102,7 @@ export default function OurStory() {
 			<div>
 				<div className=" container relative">
 					<Image
-						src="" // Replace with your image path
+						src="/assets/images/OurStoryPage/IfemideA .JPEG.jpg" // Replace with your image path
 						alt="Tobiloba"
 						width={150}
 						height={150}
@@ -139,7 +139,7 @@ export default function OurStory() {
 
 				<br />
 				<Image
-					src="" // Replace with your image path
+					src="/assets/images/OurStoryPage/Ifemide.jpg" // Replace with your image path
 					alt="Tobiloba buttom picture"
 					width={450}
 					height={450}
@@ -167,7 +167,7 @@ export default function OurStory() {
 
 					<div className="flex items-start gap-4">
 						<Image
-							src="" // Replace with your image path
+							src="/assets/images/OurStoryPage/EnoughA.JPEG.jpg" // Replace with your image path
 							alt="Temitope"
 							width={150}
 							height={150}
@@ -204,7 +204,7 @@ export default function OurStory() {
 					{/* Tobiloba's Story */}
 					<div className="flex items-start gap-4">
 						<Image
-							src="" // Replace with your image path
+							src="/assets/images/OurStoryPage/IfemideA .JPEG.jpg" // Replace with your image path
 							alt="Tobiloba"
 							width={150}
 							height={150}
