@@ -33,10 +33,10 @@ export const userLinks = [
 		label: "Guest",
 		route: "/guest",
 	},
-	{
-		label: "Lagos T&A",
-		route: "/travel",
-	},
+	// {
+	// 	label: "Lagos T&A",
+	// 	route: "/travel",
+	// },
 	{
 		label: "FAQ",
 		route: "/faq",

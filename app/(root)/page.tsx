@@ -61,7 +61,7 @@ const WelcomePage: React.FC = () => {
 			<section className="flex items-center justify-center flex-grow relative z-10">
 				<div className="bg-black bg-opacity-10 p-4 flex flex-col items-center justify-center">
 					<h1 className="text-3xl font-bold text-center text-white">
-						Temitope <span className="text-sm">and</span> Tobiloba
+						Temitope <span className="text-sm">&</span> Tobiloba
 					</h1>
 					<p className="text-center text-white mt-4">
 						Welcome to our wedding Website <br />
